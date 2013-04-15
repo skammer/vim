@@ -1,3 +1,31 @@
+" vim:foldmethod=marker
+
+function! AddMapping(name, mapping_command, mapping_keys, ...)
+  if len(a:000) < 1
+    throw "The arguments to janus#add_mapping() should be <name> <mapping_command> <mapping_keys> <mapping_action> [mapping_action]*"
+  endif
+
+  let mapping_command = join(a:000)
+
+  let mapping_list = [a:mapping_command, a:mapping_keys, mapping_command]
+  exe join(mapping_list)
+endfunction
+
+
+" VimWiki {{{
+let g:vimwiki_use_mouse  = 1
+let g:vimwiki_folding    = 1
+let g:vimwiki_fold_lists = 1
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_auto_checkbox = 1
+let wiki = {}
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'c': 'C', 'ruby': 'Ruby', 'haml': 'Haml', 'css': 'css', 'asm': 'asm'}
+let vimwiki_list = [wiki]
+let g:vimwiki_hl_headers = 0
+let g:vimwiki_camel_case = 0
+let g:vimwiki_conceallevel = 0
+" }}}
+
 " CtrlP {{{
 "let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
