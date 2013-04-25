@@ -122,7 +122,7 @@ set guioptions=c
 
 set scrolloff=3
 
-set shell=zsh\ -i
+"set shell=zsh\ -i
 
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
