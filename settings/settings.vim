@@ -136,8 +136,8 @@ set background=dark
 "colorscheme badwolf
 "colorscheme Tomorrow-Night-2
 "color jellybeans+
-"color Tomorrow-Night
-color Tomorrow
+color Tomorrow-Night
+"color Tomorrow
 
 "color getafe
 " Do not display uganda crap
