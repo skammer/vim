@@ -2,52 +2,131 @@
 
 " Pathogen {{{
 
-call pathogen#infect()
+"call pathogen#infect()
 
-let g:bundle_groups = ["tools", "langs", "colors"]
+"let g:bundle_groups = ["tools", "langs", "colors"]
 
-" Load pathogen groups
-function! g:load_pathogen()
-  if !exists("g:loaded_pathogen")
-     "Source Pathogen
-    exe 'source ' . '~/.vim/autoload/pathogen.vim'
-  endif
+"" Load pathogen groups
+"function! g:load_pathogen()
+  "if !exists("g:loaded_pathogen")
+     ""Source Pathogen
+    "exe 'source ' . '~/.vim/autoload/pathogen.vim'
+  "endif
 
-  for group in g:bundle_groups
-    call pathogen#infect( '~/.vim/bundle/' . group)
-  endfor
+  "for group in g:bundle_groups
+    "call pathogen#infect( '~/.vim/bundle/' . group)
+  "endfor
 
-  call pathogen#helptags()
-endfunction
+  "call pathogen#helptags()
+"endfunction
 
-let g:pathogen_disabled = ["syntastic"]
+"let g:pathogen_disabled = ["syntastic"]
 
-call g:load_pathogen()
+"call g:load_pathogen()
 
 " }}}
 
 " Vundle {{{
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-"Bundle 'gmarik/vundle'
+Bundle 'gmarik/vundle'
 
 " }}}
 
 " Vundle bundles {{{
 
 " Themes {{{
-" TODO: replace with github repos if possible
-"Bundle 'Getafe'
-"Bundle 'github-theme'
-"Bundle 'molokai'
-"Bundle 'pyte'
-"Bundle 'Color-Sampler-Pack'
-"Bundle 'Solarized'
-"Bundle 'vividchalk.vim'
-"Bundle 'badwolf'
+Bundle 'Getafe'
+Bundle 'sjl/badwolf'
+Bundle 'vim-scripts/Colour-Sampler-Pack'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'twerth/ir_black'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'vim-scripts/molokai'
+Bundle 'vim-scripts/pyte'
+Bundle 'telamon/vim-color-github'
+Bundle 'larssmit/vim-getafe'
+Bundle 'TechnoGate/janus-colors'
+" }}}
+
+" Langs {{{
+Bundle 'tpope/vim-haml'
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-markdown'
+Bundle 'ajf/puppet-vim'
+Bundle 'rosstimson/scala-vim-support'
+Bundle 'nono/vim-handlebars'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-git'
+Bundle 'timcharper/textile.vim'
+Bundle 'skwp/vim-rspec'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'chrisbra/csv.vim'
+Bundle 'mmalecki/vim-node.js'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'vim-scripts/Arduino-syntax-file'
+Bundle 'groenewege/vim-less'
+Bundle 'wlangstroth/vim-haskell'
+Bundle 'slim-template/vim-slim'
+Bundle 'jimenezrick/vimerl'
+Bundle 'sunaku/vim-ruby-minitest'
+Bundle 'guns/vim-clojure-static'
+Bundle 'elixir-lang/vim-elixir'
+"Bundle 'AndrewRadev/vim-coffee-script'
+Bundle 'fsouza/go.vim'
+" }}}
+
+" Tools {{{
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'spolu/dwm.vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'tristen/vim-sparkup'
+Bundle 'godlygeek/tabular'
+Bundle 'Townk/vim-autoclose'
+Bundle 'tpope/vim-bundler'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'skammer/vim-swaplines'
+Bundle 'vim-scripts/VimClojure'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'edsono/vim-matchit'
+Bundle 'ervandew/supertab'
+Bundle 'itspriddle/ZoomWin'
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/snipmate-snippets'
+Bundle 'tomtom/tlib_vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'scrooloose/syntastic'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdtree'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'tpope/vim-endwise'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'ap/vim-css-color'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'chrisbra/NrrwRgn'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'rgarver/Kwbd.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'skalnik/vim-vroom'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-repeat'
 " }}}
 
 " Tools {{{

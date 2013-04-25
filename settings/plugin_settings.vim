@@ -11,7 +11,6 @@ function! AddMapping(name, mapping_command, mapping_keys, ...)
   exe join(mapping_list)
 endfunction
 
-
 " VimWiki {{{
 let g:vimwiki_use_mouse  = 1
 let g:vimwiki_folding    = 1
