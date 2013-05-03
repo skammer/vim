@@ -1,4 +1,6 @@
 bundle
 .netrwhist
 _temp
+_bundle
+_backup
 bundle_vundle
