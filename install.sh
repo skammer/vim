@@ -12,9 +12,11 @@ ln -s ~/.vim/gvimrc ~/.gvimrc
 
 echo "Cloning bundles."
 mkdir -p ~/.vim/bundle
-cd ~/.vim/bundle
 
 # clone vundle
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 # run bundle install
+vim +BundleInstall +qall
 
 echo "All done!"
