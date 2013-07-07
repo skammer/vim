@@ -164,7 +164,6 @@ set foldenable
 "set foldlevelstart=-1
 set foldlevelstart=99
 
-
 function! MyFoldText()
     let line = getline(v:foldstart)
 
@@ -189,7 +188,7 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 "set guifont=Envy\ Code\ R:h11
 "set noanti
 "set guifont=Anonymous\ Pro:h13
-set guifont=Monaco:h11
+set guifont=Monaco:h12
 
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux

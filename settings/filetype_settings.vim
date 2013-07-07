@@ -68,5 +68,5 @@ if has("autocmd")
     \| exe "normal! g`\"" | endif
 endif
 
-
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
