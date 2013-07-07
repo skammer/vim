@@ -363,3 +363,7 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
+" Airline settings
+let g:airline_theme='dark'
+let g:airline_powerline_fonts=1
+

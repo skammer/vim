@@ -30,9 +30,6 @@
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-call vam#ActivateAddons(['powerline'])
-
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
@@ -132,7 +129,7 @@ Bundle 'tristen/vim-sparkup'
 Bundle 'vim-scripts/VimClojure'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 " }}}
 
 " }}}
