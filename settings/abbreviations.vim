@@ -19,4 +19,5 @@ iabbrev heihgt height
 iabbrev heigth height
 iabbrev flaot float
 iabbrev marign margin
+iabbrev cosnole console
 

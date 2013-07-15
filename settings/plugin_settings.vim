@@ -97,7 +97,7 @@ let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
 
 " alternative mappings
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+"map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Default mapping, <leader>n
@@ -364,6 +364,23 @@ function! s:unite_settings()
 endfunction
 
 " Airline settings
-let g:airline_theme='dark'
+let g:airline_theme='badwolf'
 let g:airline_powerline_fonts=1
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_left_sep = ''
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_right_sep = ''
+let g:airline_linecolumn_prefix = '␊ '
+let g:airline_linecolumn_prefix = '␤ '
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+let g:airline_paste_symbol = 'Þ'
+let g:airline_paste_symbol = '∥'
+
+" DWM.vim settings
+let g:dwm_map_keys=1
 
