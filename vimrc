@@ -107,6 +107,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'othree/javascript-libraries-syntax.vim'
 "Bundle 'rgarver/Kwbd.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
