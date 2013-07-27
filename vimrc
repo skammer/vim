@@ -137,6 +137,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'vim-scripts/vimwiki'
 "Bundle 'airblade/vim-gitgutter'
 "Bundle 'bling/vim-airline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " }}}
 
 " }}}

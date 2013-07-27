@@ -384,3 +384,6 @@ let g:airline_paste_symbol = '∥'
 " DWM.vim settings
 let g:dwm_map_keys=1
 
+" Powerline
+
+

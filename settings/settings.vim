@@ -188,8 +188,8 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 "set guifont=Envy\ Code\ R:h11
 "set noanti
 "set guifont=Anonymous\ Pro:h13
-set guifont=Monaco:h12
-"set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+"set guifont=Monaco:h12
+set guifont=Liberation\ Mono\ for\ Powerline:h13
 
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
