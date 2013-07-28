@@ -183,13 +183,10 @@ endfunction
 
 set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ \|\ '.(v:foldend-v:foldstart)
 
-
-"set guifont=Terminus:h12
-"set guifont=Envy\ Code\ R:h11
-"set noanti
-"set guifont=Anonymous\ Pro:h13
+" patched fonts are here https://github.com/Lokaltog/powerline-fonts
 "set guifont=Monaco:h12
-set guifont=Liberation\ Mono\ for\ Powerline:h13
+set guifont=Liberation\ Mono\ for\ Powerline:h12
+
 
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
