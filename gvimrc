@@ -11,5 +11,3 @@ endif
 
 set vb t_vb=
 
-
-
