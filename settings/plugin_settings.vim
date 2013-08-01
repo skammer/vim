@@ -45,6 +45,13 @@ call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
   "call AddMapping('ctrlp', 'imap', '<C-t>', '<ESC>:CtrlP<CR>')
 "endif
 
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+
 " }}}
 
 " Fugitive {{{
