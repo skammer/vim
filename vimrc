@@ -139,6 +139,7 @@ Bundle 'vim-scripts/vimwiki'
 "Bundle 'airblade/vim-gitgutter'
 "Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'myusuf3/numbers.vim'
 " }}}
 
 " }}}
