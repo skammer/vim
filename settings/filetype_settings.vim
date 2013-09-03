@@ -66,7 +66,11 @@ if has("autocmd")
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
+
+  au BufRead,BufNewFile *.go set noet ts=4 sw=4
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+
 endif
 
-autocmd Filetype gitcommit setlocal spell textwidth=72
+
 

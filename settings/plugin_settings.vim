@@ -25,35 +25,6 @@ let g:vimwiki_camel_case = 0
 let g:vimwiki_conceallevel = 0
 " }}}
 
-" CtrlP {{{
-"let g:ctrlp_map = ''
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
-  \ }
-
-let g:ctrlp_switch_buffer = 'e'
-
-call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
-call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
-
-"if has("gui_macvim") && has("gui_running")
-  "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
-  "call AddMapping('ctrlp', 'imap', '<D-t>', '<ESC>:CtrlP<CR>')
-"else
-  "call AddMapping('ctrlp', 'map', '<C-t>', ':CtrlP<CR>')
-  "call AddMapping('ctrlp', 'imap', '<C-t>', '<ESC>:CtrlP<CR>')
-"endif
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-
-" }}}
-
 " Fugitive {{{
 call AddMapping('fugitive', 'nmap', '<leader>gb', ':Gblame<CR>')
 call AddMapping('fugitive', 'nmap', '<leader>gd', ':Gdiff<CR>')
@@ -348,27 +319,94 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " }}}
 
-" Unite
-" Unite
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom_source('file_rec', 'matchers', ['matcher_fuzzy'])
-nnoremap <leader>t :<C-r>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :<C-r>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-r>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-r>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-r>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-r>Unite -no-split -buffer-name=buffer  buffer<cr>
+" CtrlP {{{
+"let g:ctrlp_map = ''
 
-" Custom mappings for the unite buffer
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+
+"let g:ctrlp_lazy_update = 1
+
+let g:ctrlp_switch_buffer = 'e'
+
+let g:ctrlp_user_command = 'find %s -type f'
+
+  call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
+  call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
+
+"if has("gui_macvim") && has("gui_running")
+  "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
+  "call AddMapping('ctrlp', 'imap', '<D-t>', '<ESC>:CtrlP<CR>')
+"else
+  "call AddMapping('ctrlp', 'map', '<C-t>', ':CtrlP<CR>')
+  "call AddMapping('ctrlp', 'imap', '<C-t>', '<ESC>:CtrlP<CR>')
+"endif
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g %s'
+endif
+
+
+" }}}
+
+" Unite
+"let g:unite_source_history_yank_enable = 1
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom_source('file_rec', 'matchers', ['matcher_fuzzy'])
+"nnoremap <C-p> :Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+"nnoremap <C-P> :<C-u>Unite file_rec/async<cr>
+"nnoremap <leader>t :<C-r>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+"nnoremap <leader>f :<C-r>Unite -no-split -buffer-name=files   -start-insert file<cr>
+"nnoremap <leader>r :<C-r>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+"nnoremap <leader>o :<C-r>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+"nnoremap <leader>y :<C-r>Unite -no-split -buffer-name=yank    history/yank<cr>
+"nnoremap <leader>e :<C-r>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+let g:unite_source_grep_command="ag"
+let g:unite_source_grep_default_opts = '-i -l -g --nocolor'
+let g:unite_source_grep_recursive_opt = ''
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:unite_enable_start_insert = 1
+let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 0
+let g:unite_winheight = 10
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ ], '\|'))
+
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <C-u> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+
 autocmd FileType unite call s:unite_settings()
+
 function! s:unite_settings()
-  " Play nice with supertab
   let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+  nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
+
+
+
+
+
+
+
 
 " Airline settings
 let g:airline_theme='badwolf'
