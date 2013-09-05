@@ -114,7 +114,7 @@ Bundle 'othree/javascript-libraries-syntax.vim'
 "Bundle 'rgarver/Kwbd.vim'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'skalnik/vim-vroom'

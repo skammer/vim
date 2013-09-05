@@ -71,19 +71,19 @@ endif
 " }}}
 
 " NERDTree {{{
-let NERDTreeHijackNetrw = 0
-let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
+"let NERDTreeHijackNetrw = 0
+"let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
 
 " alternative mappings
 "map <Leader>n <plug>NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_gui_startup = 0
+"let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Default mapping, <leader>n
-call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
+"call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
 
-augroup AuNERDTreeCmd
-autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
-autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
+"augroup AuNERDTreeCmd
+"autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
+"autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
 
 " If the parameter is a directory, cd into it
 function CdIfDirectory(directory)
