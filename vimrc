@@ -141,6 +141,8 @@ Bundle 'vim-scripts/vimwiki'
 "Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'myusuf3/numbers.vim'
+Bundle 'austintaylor/vim-indentobject'
+Bundle 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " }}}
