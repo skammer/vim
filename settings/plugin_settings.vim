@@ -432,3 +432,9 @@ let g:dwm_map_keys=1
 " Powerline
 
 
+
+" Indent gudies {{{
+
+let g:indent_guides_color_change_percent = 5
+
+" }}}
