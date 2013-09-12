@@ -84,7 +84,7 @@ Bundle 'jnwhiteh/vim-golang'
 " Tools {{{
 Bundle 'gorkunov/smartpairs.vim'
 Bundle 'Stormherz/tablify'
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Shougo/neocomplcache.vim'

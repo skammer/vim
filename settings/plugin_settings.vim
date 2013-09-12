@@ -333,8 +333,8 @@ let g:ctrlp_switch_buffer = 'e'
 
 let g:ctrlp_user_command = 'find %s -type f'
 
-  call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
-  call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
+"call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
+"call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
 "if has("gui_macvim") && has("gui_running")
   "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
@@ -366,9 +366,25 @@ endif
 "nnoremap <leader>y :<C-r>Unite -no-split -buffer-name=yank    history/yank<cr>
 "nnoremap <leader>e :<C-r>Unite -no-split -buffer-name=buffer  buffer<cr>
 
-let g:unite_source_grep_command="ag"
-let g:unite_source_grep_default_opts = '-i -l -g --nocolor'
-let g:unite_source_grep_recursive_opt = ''
+"let g:unite_source_grep_command="ag"
+"let g:unite_source_grep_default_opts = '-i -l -g --nocolor'
+"let g:unite_source_grep_recursive_opt = ''
+
+let g:unite_source_grep_max_candidates = 200
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack in unite grep source.
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts =
+  \ '--no-heading --no-color -a -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite
@@ -383,10 +399,12 @@ call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ '\.git/',
       \ ], '\|'))
 
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 
 nnoremap <C-u> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 
 autocmd FileType unite call s:unite_settings()
 
