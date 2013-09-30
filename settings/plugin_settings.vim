@@ -79,11 +79,11 @@ endif
 "let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Default mapping, <leader>n
-"call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
+call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
 
-"augroup AuNERDTreeCmd
-"autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
-"autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
+augroup AuNERDTreeCmd
+autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
+autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
 
 " If the parameter is a directory, cd into it
 function CdIfDirectory(directory)
@@ -324,17 +324,17 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg$\',
   \ }
 
-"let g:ctrlp_lazy_update = 1
+let g:ctrlp_lazy_update = 50
 
 let g:ctrlp_switch_buffer = 'e'
 
 let g:ctrlp_user_command = 'find %s -type f'
 
-"call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
-"call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
+call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
+call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
 "if has("gui_macvim") && has("gui_running")
   "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
@@ -376,7 +376,8 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts =
   \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr''' .
+  \  '''public'' --ignore ''log'' --ignore ''tmp'''
   let g:unite_source_grep_recursive_opt = ''
 elseif executable('ack-grep')
   " Use ack in unite grep source.
@@ -394,7 +395,12 @@ let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
 
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+"call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      "\ 'ignore_pattern', join([
+      "\ '\.git/',
+      "\ ], '\|'))
+
+call unite#custom_source('file_rec,file_rec/async,buffer',
       \ 'ignore_pattern', join([
       \ '\.git/',
       \ ], '\|'))
@@ -403,8 +409,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
 nnoremap <C-u> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
-nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
-nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+"nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+"nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 
 autocmd FileType unite call s:unite_settings()
 

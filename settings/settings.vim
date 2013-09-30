@@ -133,10 +133,10 @@ set autoread
 set background=dark
 "let g:badwolf_tabline = 2
 "let g:badwolf_html_link_underline = 0
-colorscheme badwolf
+"colorscheme badwolf
 "colorscheme Tomorrow-Night-2
 "color jellybeans+
-"color Tomorrow-Night
+color Tomorrow-Night
 "color Tomorrow
 
 "color getafe
