@@ -68,6 +68,9 @@ if has("autocmd")
     \| exe "normal! g`\"" | endif
 
   au BufRead,BufNewFile *.go set noet ts=4 sw=4
+  au FileType go au BufWritePre <buffer> Fmt
+  au BufWritePost *.go silent! !ctags -R &
+
   autocmd Filetype gitcommit setlocal spell textwidth=72
 
 endif

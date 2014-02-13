@@ -81,9 +81,9 @@ endif
 " Default mapping, <leader>n
 call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
 
-augroup AuNERDTreeCmd
-autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
-autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
+"augroup AuNERDTreeCmd
+"autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
+"autocmd AuNERDTreeCmd FocusGained * call UpdateNERDTree()
 
 " If the parameter is a directory, cd into it
 function CdIfDirectory(directory)
@@ -133,7 +133,8 @@ endfunction
 " }}}
 
 " Syntastic {{{
-let g:syntastic_quiet_warnings=0
+"let g:syntastic_quiet_warnings=0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_auto_loc_list=2
 let g:syntastic_enable_signs=1
 "let g:syntastic_auto_loc_list=1
@@ -142,6 +143,33 @@ let g:syntastic_disabled_filetypes = ['sass', 'scss', 'css']
 
 " Tagbar {{{
 call AddMapping('tagbar', 'map', '<Leader>rt', ':TagbarToggle<CR>')
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 " }}}
 
 " Tabularize {{{
@@ -205,7 +233,7 @@ let g:used_javascript_libs = 'underscore,angularjs,jquery'
 " Map <Leader><Leader> to ZoomWin
 call AddMapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
 
-" Neocomplete {{{ 
+" Neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -238,18 +266,18 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 "inoremap <silent><CR>  <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
+"function! s:my_cr_function()
+  "return neocomplete#smart_close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplete#close_popup()
+"inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
@@ -319,22 +347,30 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " }}}
 
+
+" SuperTab {{{
+let g:SuperTabDefaultCompletionType = "context"
+" }}}
+
+
 " CtrlP {{{
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg$\',
   \ }
 
 let g:ctrlp_lazy_update = 50
 
 let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_show_hidden = 1
 
-let g:ctrlp_user_command = 'find %s -type f'
+"let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 
-call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
-call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
+"call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
+"call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
 "if has("gui_macvim") && has("gui_running")
   "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
@@ -347,70 +383,84 @@ call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 endif
 
 
 " }}}
 
-" Unite
-"let g:unite_source_history_yank_enable = 1
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#custom_source('file_rec', 'matchers', ['matcher_fuzzy'])
-"nnoremap <C-p> :Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-"nnoremap <C-P> :<C-u>Unite file_rec/async<cr>
-"nnoremap <leader>t :<C-r>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-"nnoremap <leader>f :<C-r>Unite -no-split -buffer-name=files   -start-insert file<cr>
-"nnoremap <leader>r :<C-r>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-"nnoremap <leader>o :<C-r>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-"nnoremap <leader>y :<C-r>Unite -no-split -buffer-name=yank    history/yank<cr>
-"nnoremap <leader>e :<C-r>Unite -no-split -buffer-name=buffer  buffer<cr>
-
-"let g:unite_source_grep_command="ag"
-"let g:unite_source_grep_default_opts = '-i -l -g --nocolor'
-"let g:unite_source_grep_recursive_opt = ''
-
-let g:unite_source_grep_max_candidates = 200
-if executable('ag')
-  " Use ag in unite grep source.
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr''' .
-  \  '''public'' --ignore ''log'' --ignore ''tmp'''
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack-grep')
-  " Use ack in unite grep source.
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts =
-  \ '--no-heading --no-color -a -H'
-  let g:unite_source_grep_recursive_opt = ''
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Unite
+" => Unite {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:unite_source_history_yank_enable = 1
+let g:unite_data_directory='~/.vim/unite'
+let g:unite_source_rec_max_cache_files=1000
+let g:unite_source_grep_max_candidates = 1000
+
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
-let g:unite_winheight = 10
+let g:unite_winheight = 15
 
-"call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      "\ 'ignore_pattern', join([
-      "\ '\.git/',
-      "\ ], '\|'))
+"let g:unite_candidate_icon = '-'
+"let g:unite_marked_icon = '+'
 
-call unite#custom_source('file_rec,file_rec/async,buffer',
-      \ 'ignore_pattern', join([
-      \ '\.git/',
-      \ ], '\|'))
+"let g:unite_source_grep_default_opts = '-i -l -g --nocolor'
+
+if executable('ag')
+  let g:unite_source_rec_async_command = 'ag -l -g ""'
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--smart-case --nogroup --nocolor --line-numbers'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack')
+  let g:unite_source_rec_async_command = 'ack -f --nofilter'
+  let g:unite_source_grep_command = 'ack'
+  let g:unite_source_grep_default_opts = '--no-color --no-heading'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom_source('file_rec', 'matchers', ['matcher_fuzzy'])
+
+let s:unite_ignores = [
+  \ '\.git', 'deploy', 'dist',
+  \ 'undo', 'tmp', 'backups',
+  \ 'generated', 'build', 'images']
+
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', 
+  \ join(s:unite_ignores, '\|'))
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-nnoremap <C-u> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+"nnoremap <C-u> :Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+"nnoremap <C-u> :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
+nnoremap <leader>p :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
+nnoremap <D-p>     :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
 "nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 "nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+
+"nnoremap <silent> <leader>u :Unite -toggle -sync -auto-resize -buffer-name=files file_rec/async<CR>
+
+" sort file results by length
+call unite#custom#source('file', 'sorters', 'sorter_length')
+call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
+
+" limit results for recently edited files
+call unite#custom#source('file_mru', 'max_candidates', 10)
+
+" ignored files for file_mru
+call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
+
+" sort buffers by number
+call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
+
+
+call unite#custom#source('file,file/new,buffer,file_rec', 'matchers', 'matcher_fuzzy')
 
 autocmd FileType unite call s:unite_settings()
 
@@ -425,16 +475,16 @@ function! s:unite_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-
-
+" }}}
 
 
 
 
 
 " Airline settings
-let g:airline_theme='badwolf'
-let g:airline_powerline_fonts=1
+let g:airline_theme='tomorrow'
+let g:airline_powerline_fonts=0
+
 " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -454,6 +504,12 @@ let g:airline_paste_symbol = '∥'
 let g:dwm_map_keys=1
 
 " Powerline
+" Use compatible symbols in statusline
+"let g:Powerline_symbols = "compatible"
+"let g::Powerline_symbols = 'fancy'
+" Use a different Powerline cache file for gvim
+let g:Powerline_cache_file = "/tmp/Powerline-gvim.cache"
+
 
 
 

@@ -89,8 +89,6 @@ endif
 
 
 
-
-
 "
 " My custom settings
 "
@@ -112,8 +110,28 @@ set showbreak=↪
 set linebreak
 "set wrap
 set textwidth=80
-set formatoptions=qrn1
-set colorcolumn=+1
+"set formatoptions=qrn1
+set formatoptions=crqwan1
+"set colorcolumn=+1
+
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+function! HLNext (blinktime)
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('WhiteOnRed', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
 
 "set guioptions-=elLrR
 "set guioptions+=c
@@ -136,8 +154,9 @@ set background=dark
 "colorscheme badwolf
 "colorscheme Tomorrow-Night-2
 "color jellybeans+
-color Tomorrow-Night
+"color Tomorrow-Night
 "color Tomorrow
+colorscheme hybrid
 
 "color getafe
 " Do not display uganda crap
@@ -185,7 +204,12 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 
 " patched fonts are here https://github.com/Lokaltog/powerline-fonts
 "set guifont=Monaco:h12
-set guifont=Liberation\ Mono\ for\ Powerline:h12
+"set guifont=Liberation\ Mono\ for\ Powerline:h12
+"set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+"set guifont=Anonymous\ Pro\ for\ Powerline:h13
+set guifont=Anonymice\ Powerline:h13
+"set guifont=Inconsolata\ 13
+"set guifont=PragmataPro:h12
 
 
 
