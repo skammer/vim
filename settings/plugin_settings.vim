@@ -439,8 +439,8 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 
 "nnoremap <C-u> :Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 "nnoremap <C-u> :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
-nnoremap <leader>p :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
-nnoremap <D-p>     :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
+nnoremap <leader>p :Unite -buffer-name=files -sync file_rec/async file_mru buffer<cr>
+nnoremap <D-p>     :Unite -buffer-name=files -sync file_rec/async file_mru buffer<cr>
 "nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 "nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
 
