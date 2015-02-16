@@ -2,20 +2,10 @@
 " Filetype settings
 "
 "
+au BufNewFile,BufReadPost Gemfile.lock setf gemfilelock
 
-""
-"" Helpers
-""
-
-" Some file types should wrap their text
-function! s:setupWrapping()
-  set wrap
-  set linebreak
-  set textwidth=72
-  set nolist
-endfunction
-
-
+" Do not use syntax highlighting when opening schema.ru
+au BufReadPost schema.rb set ft=text
 
 augroup coffeescript
   au BufNewFile,BufReadPost *.coffee setl foldmethod=indent
@@ -67,9 +57,9 @@ if has("autocmd")
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
 
-  au BufRead,BufNewFile *.go set noet ts=4 sw=4
-  au FileType go au BufWritePre <buffer> Fmt
-  au BufWritePost *.go silent! !ctags -R &
+  "au BufRead,BufNewFile *.go set noet ts=4 sw=4
+  "au FileType go au BufWritePost Fmt
+  "au BufWritePost *.go silent! !ctags -R &
 
   autocmd Filetype gitcommit setlocal spell textwidth=72
 

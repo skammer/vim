@@ -1,4 +1,4 @@
-" vim:foldmethod=marker
+" vim:foldmethod=marker foldlevel=0
 
 function! AddMapping(name, mapping_command, mapping_keys, ...)
   if len(a:000) < 1
@@ -61,12 +61,22 @@ call AddMapping('kwbd', 'nmap', '<C-W>!', '<Plug>Kwbd')
 " }}}
 
 " NERDCommenter mappings {{{
+" if has("gui_macvim") && has("gui_running")
+"   call AddMapping('nerdcommenter', 'map', '<D-/>', '<plug>NERDCommenterToggle<CR>')
+"   call AddMapping('nerdcommenter', 'imap', '<D-/>', '<Esc><plug>NERDCommenterToggle<CR>i')
+" else
+"   call AddMapping('nerdcommenter', 'map', '<leader>/', '<plug>NERDCommenterToggle<CR>')
+"   call AddMapping('nerdcommenter', 'imap', '<leader>/', '<Esc><plug>NERDCommenterToggle<CR>i')
+" endif
+" }}}
+
+" TComment mappings {{{
 if has("gui_macvim") && has("gui_running")
-  call AddMapping('nerdcommenter', 'map', '<D-/>', '<plug>NERDCommenterToggle<CR>')
-  call AddMapping('nerdcommenter', 'imap', '<D-/>', '<Esc><plug>NERDCommenterToggle<CR>i')
+  call AddMapping('tcomment', 'map', '<D-/>', ':TComment<CR>')
+  call AddMapping('tcomment', 'imap', '<D-/>', '<Esc>:TComment<CR>')
 else
-  call AddMapping('nerdcommenter', 'map', '<leader>/', '<plug>NERDCommenterToggle<CR>')
-  call AddMapping('nerdcommenter', 'imap', '<leader>/', '<Esc><plug>NERDCommenterToggle<CR>i')
+  call AddMapping('tcomment', 'map', '<leader>/', ':TComment<CR>')
+  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>:TComment<CR>')
 endif
 " }}}
 
@@ -212,8 +222,9 @@ nmap <leader>R :RainbowParenthesesToggle<CR>
 inoremap <C-_> <Space><BS><Esc>:call InsertCloseTag()<cr>a
 " }}}
 
-" Yankring
+" Yankring {{{
 nnoremap <silent> <F6> :YRShow<cr>
+" }}}
 
 " Unimpared {{{
 " Normal Mode: Bubble single lines
@@ -233,120 +244,26 @@ let g:used_javascript_libs = 'underscore,angularjs,jquery'
 " Map <Leader><Leader> to ZoomWin
 call AddMapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
 
-" Neocomplete {{{
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"inoremap <silent><CR>  <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-"function! s:my_cr_function()
-  "return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" YCM {{{
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " }}}
 
+" Ultisnips {{{
 
-" Neosnippets {{{
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" Trigger configuration. Do not use <tab> if you use 
+" https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 " }}}
-
 
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "context"
@@ -367,10 +284,10 @@ let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_show_hidden = 1
 
 "let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 
-"call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
-"call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
+call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
+call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
 "if has("gui_macvim") && has("gui_running")
   "call AddMapping('ctrlp', 'map', '<D-t>', ':CtrlP<CR>')
@@ -396,8 +313,8 @@ endif
 
 let g:unite_source_history_yank_enable = 1
 let g:unite_data_directory='~/.vim/unite'
-let g:unite_source_rec_max_cache_files=1000
-let g:unite_source_grep_max_candidates = 1000
+let g:unite_source_rec_max_cache_files=100
+let g:unite_source_grep_max_candidates = 100
 
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
@@ -430,55 +347,49 @@ let s:unite_ignores = [
   \ 'undo', 'tmp', 'backups',
   \ 'generated', 'build', 'images']
 
-call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', 
-  \ join(s:unite_ignores, '\|'))
+"call unite#custom#source('file_mru,file_rec,file_rec/async,buffer,grepocate',
+  "\ 'ignore_pattern', 
+  "\ join(s:unite_ignores, '\|'))
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#sorter_default#use(['sorter_rank'])
 
-"nnoremap <C-u> :Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
-"nnoremap <C-u> :Unite -buffer-name=files -sync file_mru buffer file_rec/async<cr>
-nnoremap <leader>p :Unite -buffer-name=files -sync file_rec/async file_mru buffer<cr>
-nnoremap <D-p>     :Unite -buffer-name=files -sync file_rec/async file_mru buffer<cr>
-"nnoremap <C-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
-"nnoremap <D-p> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
-
-"nnoremap <silent> <leader>u :Unite -toggle -sync -auto-resize -buffer-name=files file_rec/async<CR>
 
 " sort file results by length
-call unite#custom#source('file', 'sorters', 'sorter_length')
-call unite#custom#source('file_rec/async', 'sorters', 'sorter_length')
+"call unite#custom#source('file', 'sorters', 'sorter_length')
+"call unite#custom#source('file_rec/async', 'sorters', 'sorter_rank')
 
 " limit results for recently edited files
-call unite#custom#source('file_mru', 'max_candidates', 10)
+"call unite#custom#source('file_mru', 'max_candidates', 10)
 
 " ignored files for file_mru
-call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
+"call unite#custom#source('file_mru', 'ignore_pattern', 'COMMIT_EDITMSG')
 
 " sort buffers by number
-call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
+"call unite#custom#source('buffer', 'sorters', 'sorter_reverse')
 
 
-call unite#custom#source('file,file/new,buffer,file_rec', 'matchers', 'matcher_fuzzy')
+"call unite#custom#source('file,file/new,buffer,file_rec', 'matchers', 'matcher_fuzzy')
 
-autocmd FileType unite call s:unite_settings()
+"autocmd FileType unite call s:unite_settings()
 
-function! s:unite_settings()
-  let b:SuperTabDisabled=1
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-x> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+"function! s:unite_settings()
+  "let b:SuperTabDisabled=1
+  "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  "imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  "imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  "imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-endfunction
+  "nmap <buffer> <ESC> <Plug>(unite_exit)
+"endfunction
 
 " }}}
 
 
-
+" Clojure {{{
+let g:clojure_align_subforms = 1
+" }}}
 
 
 " Airline settings

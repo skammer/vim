@@ -1,159 +1,101 @@
 " vim:ft=vim foldmethod=marker
 
-" Pathogen {{{
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
-"call pathogen#infect()
+" NeoBundle {{{
+ if has('vim_starting')
+   if &compatible
+     set nocompatible               " Be iMproved
+   endif
 
-"let g:bundle_groups = ["tools", "langs", "colors"]
+   " Required:
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
 
-"" Load pathogen groups
-"function! g:load_pathogen()
-  "if !exists("g:loaded_pathogen")
-     ""Source Pathogen
-    "exe 'source ' . '~/.vim/autoload/pathogen.vim'
-  "endif
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-  "for group in g:bundle_groups
-    "call pathogen#infect( '~/.vim/bundle/' . group)
-  "endfor
-
-  "call pathogen#helptags()
-"endfunction
-
-"let g:pathogen_disabled = ["syntastic"]
-
-"call g:load_pathogen()
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " }}}
 
-" Vundle {{{
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" }}}
-
-" Vundle bundles {{{
+" Neobundle bundles {{{
 
 " Themes {{{
-"Bundle 'Getafe'
-"Bundle 'TechnoGate/janus-colors'
-Bundle 'altercation/vim-colors-solarized'
-"Bundle 'larssmit/vim-getafe'
-"Bundle 'sjl/badwolf'
-Bundle 'telamon/vim-color-github'
-"Bundle 'tpope/vim-vividchalk'
-"Bundle 'twerth/ir_black'
-"Bundle 'vim-scripts/Colour-Sampler-Pack'
-Bundle 'vim-scripts/molokai'
-"Bundle 'vim-scripts/pyte'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'zeis/vim-kolor'
+NeoBundle 'endel/vim-github-colorscheme'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'guns/jellyx.vim'
+NeoBundle 'vim-scripts/xoria256.vim'
+NeoBundle 'tejr/sahara'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'noahfrederick/vim-hemisu'
+NeoBundle 'morhetz/gruvbox'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
 " }}}
 
 " Langs {{{
-"Bundle 'ajf/puppet-vim'
-Bundle 'cakebaker/scss-syntax.vim'
-"Bundle 'chrisbra/csv.vim'
-"Bundle 'elixir-lang/vim-elixir'
-Bundle 'fsouza/go.vim'
-Bundle 'jnwhiteh/vim-golang'
-Bundle "dgryski/vim-godef"
-Bundle "Blackrush/vim-gocode"
-"Bundle 'groenewege/vim-less'
-"Bundle 'guns/vim-clojure-static'
-"Bundle 'jimenezrick/vimerl'
-Bundle 'kchmck/vim-coffee-script'
-"Bundle 'mmalecki/vim-node.js'
-Bundle 'nono/vim-handlebars'
-Bundle 'pangloss/vim-javascript'
-"Bundle 'rosstimson/scala-vim-support'
-Bundle 'skwp/vim-rspec'
-"Bundle 'slim-template/vim-slim'
-"Bundle 'sunaku/vim-ruby-minitest'
-"Bundle 'timcharper/textile.vim'
-"Bundle 'tpope/vim-cucumber'
-Bundle 'vim-ruby/vim-ruby'
-"Bundle 'vim-scripts/Arduino-syntax-file'
-"Bundle 'wlangstroth/vim-haskell'
+NeoBundle "groenewege/vim-less"
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM'
+NeoBundle 'wting/rust.vim'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+NeoBundle 'guns/vim-sexp'
 " }}}
 
 " Tools {{{
-Bundle 'vim-scripts/YankRing.vim'
-"Bundle 'gorkunov/smartpairs.vim'
-"Bundle 'Stormherz/tablify'
-"Bundle 'kien/ctrlp.vim'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'Shougo/neocomplcache.vim'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-"Bundle 'Shougo/neosnippet.vim'
-"Bundle 'Shougo/vimshell.vim'
-"Bundle 'honza/vim-snippets'
-"Bundle 'Townk/vim-autoclose'
-Bundle 'ap/vim-css-color'
-"Bundle 'chrisbra/NrrwRgn'
-Bundle 'edsono/vim-matchit'
-Bundle 'ervandew/supertab'
-Bundle 'godlygeek/tabular'
-Bundle 'itspriddle/ZoomWin'
-Bundle 'jeetsukumaran/vim-buffergator'
-"Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'amdt/vim-niji'
-Bundle 'majutsushi/tagbar'
-"Bundle 'mattn/gist-vim'
-"Bundle 'mattn/webapi-vim'
-"Bundle 'michaeljsmith/vim-indent-object'
-"Bundle 'mattboehm/vim-unstack'
-"Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
-"Bundle 'rgarver/Kwbd.vim'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-"Bundle 'sjl/gundo.vim'
-"Bundle 'skalnik/vim-vroom'
-Bundle 'skammer/vim-swaplines'
-"Bundle 'spolu/dwm.vim'
-"Bundle 'terryma/vim-multiple-cursors'
-Bundle 'terryma/vim-expand-region'
-Bundle 'tomtom/tlib_vim'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-ragtag'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-"Bundle 'tpope/vim-fireplace'
-"Bundle 'tristen/vim-sparkup'
-"Bundle 'vim-scripts/VimClojure'
-Bundle 'vim-scripts/vimwiki'
-"Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"Bundle 'myusuf3/numbers.vim'
-"Bundle 'austintaylor/vim-indentobject'
-Bundle 'nathanaelkane/vim-indent-guides'
-
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'sjl/vitality.vim'
-
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'ap/vim-css-color'
+NeoBundle 'edsono/vim-matchit'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'jeetsukumaran/vim-buffergator'
+NeoBundle 'amdt/vim-niji'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'skammer/vim-swaplines'
+NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tpope/vim-ragtag'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'vim-scripts/vimwiki'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'ryanss/vim-hackernews'
 " }}}
+
+call neobundle#end()
+
 
 " }}}
 
@@ -204,4 +146,3 @@ set exrc
 
 " must be written at the last.  see :help 'secure'.
 set secure
-

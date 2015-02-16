@@ -602,3 +602,10 @@ function! s:Paste(paste_key, register)
 endfunction
 
 " }}}
+
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
+
+nmap ,r :Require! <bar> Eval (clojure.test/run-tests)<CR>

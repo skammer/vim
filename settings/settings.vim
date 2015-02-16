@@ -3,16 +3,18 @@
 ""
 
 set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
+" set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8    " Set default encoding to UTF-8
+set nohidden          " Do not hide buffers
 
 ""
 "" Whitespace
 ""
 
-set nowrap                        " don't wrap lines
+" set nowrap                        " don't wrap lines
+set wrap                          " wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
@@ -67,8 +69,6 @@ set wildignore+=*.swp,*~,._*
 set backupdir=~/.vim/_backup//    " where to put backup files.
 set directory=~/.vim/_temp//      " where to put swap files.
 
-
-
 if has("gui_running")
   if has("autocmd")
     " Automatically resize splits when resizing MacVim window
@@ -76,30 +76,21 @@ if has("gui_running")
   endif
 endif
 
-
 if has("autocmd")
   if exists("g:autosave_on_blur")
     au FocusLost * silent! wall
   endif
 endif
 
-
-
-
-
-
-
 "
 " My custom settings
 "
-"
-
 
 let g:ruby_path = '/Users/skammer/.rbenv/shims/ruby'
 set autoindent
 set smartindent
 set cindent
-"set lazyredraw
+set lazyredraw
 set ttyfast
 set virtualedit+=block
 "set virtualedit=all
@@ -109,10 +100,11 @@ set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 set showbreak=↪
 set linebreak
 "set wrap
-set textwidth=80
+"set textwidth=80
 "set formatoptions=qrn1
+"set formatoptions=rqan1
 set formatoptions=crqwan1
-"set colorcolumn=+1
+set colorcolumn=+1
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -138,25 +130,38 @@ endfunction
 
 set guioptions=c
 
-set scrolloff=3
+"set scrolloff=3
 
 "set shell=zsh\ -i
 
 " Don't try to highlight lines longer than 800 characters.
-set synmaxcol=800
+set synmaxcol=500
 
 set autowrite
 set autoread
 
+
+" if has("gui_macvim") && has("gui_running") " CMDs {{{
+"   set background=light
+"   colorscheme Tomorrow
+" else
+"   set background=dark
+"   colorscheme hybrid
+" endif
+
+
 set background=dark
-"let g:badwolf_tabline = 2
-"let g:badwolf_html_link_underline = 0
-"colorscheme badwolf
-"colorscheme Tomorrow-Night-2
-"color jellybeans+
-"color Tomorrow-Night
-"color Tomorrow
-colorscheme hybrid
+" colorscheme hybrid
+" colorscheme jellyx
+" colorscheme hemisu
+" colorscheme jellybeans
+" colorscheme Tomorrow-Night
+" colorscheme Tomorrow
+" colorscheme sahara
+" colorscheme base16-default
+colorscheme wombat
+colorscheme gruvbox
+
 
 "color getafe
 " Do not display uganda crap
@@ -202,18 +207,15 @@ endfunction
 
 set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ \|\ '.(v:foldend-v:foldstart)
 
-" patched fonts are here https://github.com/Lokaltog/powerline-fonts
-"set guifont=Monaco:h12
-"set guifont=Liberation\ Mono\ for\ Powerline:h12
-"set guifont=Source\ Code\ Pro\ for\ Powerline:h12
-"set guifont=Anonymous\ Pro\ for\ Powerline:h13
-set guifont=Anonymice\ Powerline:h13
-"set guifont=Inconsolata\ 13
-"set guifont=PragmataPro:h12
-
-
+" use 12 for retina
+" set guifont=Anonymous\ Pro:h12
+" set guifont=Source\ Code\ Pro:h12
+set guifont=Anka/Coder:h12
+"set guifont=PragmataPro:h13
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
+
+"set cursorline
 
 " Only show cursorline in the current window and in normal mode.
 augroup cline
@@ -222,7 +224,7 @@ augroup cline
     au WinEnter,InsertLeave * set cursorline
 augroup END
 
-" Run :Lorem to insert famous Lorem ipsum quote
+" Run :Lorem to insert famous Lorem iapsum quote
 command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
       \ adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
       \ magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -238,3 +240,24 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+
+function! DeleteInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    "Below originally inspired by Hara Krishna Dara and Keith Roberts
+    "http://tech.groups.yahoo.com/group/vim/message/56425
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bdi :call DeleteInactiveBufs()
