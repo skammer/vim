@@ -392,27 +392,25 @@ let g:clojure_align_subforms = 1
 " }}}
 
 
-" Airline settings
+" Airline {{{
 let g:airline_theme='tomorrow'
 let g:airline_powerline_fonts=0
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_left_sep = ''
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_right_sep = ''
-let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_fugitive_prefix = '⎇ '
-let g:airline_paste_symbol = 'ρ'
-let g:airline_paste_symbol = 'Þ'
-let g:airline_paste_symbol = '∥'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
-" DWM.vim settings
-let g:dwm_map_keys=1
+" unicode symbols
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" }}}
+
 
 " Powerline
 " Use compatible symbols in statusline
@@ -422,6 +420,9 @@ let g:dwm_map_keys=1
 let g:Powerline_cache_file = "/tmp/Powerline-gvim.cache"
 
 
+
+" DWM.vim settings
+let g:dwm_map_keys=1
 
 
 " Indent gudies {{{
