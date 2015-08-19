@@ -267,6 +267,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " }}}
 
 
@@ -278,10 +281,12 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg$\',
   \ }
 
-let g:ctrlp_lazy_update = 50
+" let g:ctrlp_lazy_update = 50
 
 let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_show_hidden = 1
+
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 "let g:ctrlp_user_command = 'find %s -type f'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
@@ -300,7 +305,7 @@ call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
+  " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 endif
 
 

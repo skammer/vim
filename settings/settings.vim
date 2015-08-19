@@ -87,11 +87,13 @@ endif
 "
 
 let g:ruby_path = '/Users/skammer/.rbenv/shims/ruby'
+let g:python_host_prog = '/usr/local/bin/python'
 set autoindent
 set smartindent
 set cindent
-set lazyredraw
-set ttyfast
+" set lazyredraw
+set nolazyredraw
+" set ttyfast
 set virtualedit+=block
 "set virtualedit=all
 set fillchars=diff:⣿,vert:│
@@ -159,7 +161,7 @@ set background=dark
 " colorscheme Tomorrow
 " colorscheme sahara
 " colorscheme base16-default
-colorscheme wombat
+" colorscheme wombat
 colorscheme gruvbox
 
 
@@ -210,8 +212,9 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 " use 12 for retina
 " set guifont=Anonymous\ Pro:h12
 " set guifont=Source\ Code\ Pro:h12
-set guifont=Anka/Coder:h12
 "set guifont=PragmataPro:h13
+set guifont=Anka/Coder:h12
+" set guifont=Fira\ Code:h13
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 

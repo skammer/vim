@@ -265,9 +265,9 @@ endif
 " }}}
 
 " Edit ~/.vimrc
-map <leader>ed :e ~/.vimrc<CR>
+map <leader>ed :e ~/.nvimrc<CR>
 " Reload ~/.vimrc
-map <leader>rv :source ~/.vimrc<CR>
+map <leader>rv :source ~/.nvimrc<CR>
 " Vertical split
 map <leader>vsp :vnew<cr>
 " Horizontal split
@@ -609,3 +609,35 @@ endfunction
 " noremap <Right> <NOP>
 
 nmap ,r :Require! <bar> Eval (clojure.test/run-tests)<CR>
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nnoremap <Leader>o :CtrlP<CR>
+nmap <Leader><Leader> V
+
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
+map q: :q
+
+noremap gV `[v`]
