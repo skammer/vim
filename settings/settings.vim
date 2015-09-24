@@ -153,11 +153,11 @@ set autoread
 
 
 set background=dark
-colorscheme hybrid
+" colorscheme hybrid
 " colorscheme jellyx
 " colorscheme hemisu
 " colorscheme jellybeans
-" colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night
 " colorscheme Tomorrow
 " colorscheme sahara
 " colorscheme base16-default
