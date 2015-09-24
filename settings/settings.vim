@@ -137,7 +137,7 @@ set guioptions=c
 "set shell=zsh\ -i
 
 " Don't try to highlight lines longer than 800 characters.
-set synmaxcol=500
+set synmaxcol=1000
 
 set autowrite
 set autoread
@@ -153,7 +153,7 @@ set autoread
 
 
 set background=dark
-" colorscheme hybrid
+colorscheme hybrid
 " colorscheme jellyx
 " colorscheme hemisu
 " colorscheme jellybeans
@@ -162,7 +162,7 @@ set background=dark
 " colorscheme sahara
 " colorscheme base16-default
 " colorscheme wombat
-colorscheme gruvbox
+" colorscheme gruvbox
 
 
 "color getafe

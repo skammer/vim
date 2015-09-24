@@ -277,7 +277,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules$',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg$\',
   \ }
 

@@ -10,16 +10,16 @@ call plug#begin('~/.nvim/plugged')
 
 " Themes {{{
 " Plug 'endel/vim-github-colorscheme'
-" Plug 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid'
 " Plug 'nanotech/jellybeans.vim'
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Plug 'guns/jellyx.vim'
-" Plug 'vim-scripts/xoria256.vim'
+Plug 'vim-scripts/xoria256.vim'
 " Plug 'tejr/sahara'
 " Plug 'altercation/vim-colors-solarized'
-" Plug 'noahfrederick/vim-hemisu'
+Plug 'noahfrederick/vim-hemisu'
 Plug 'morhetz/gruvbox'
-" Plug 'jeffreyiacono/vim-colors-wombat'
+Plug 'jeffreyiacono/vim-colors-wombat'
 " }}}
 
 " Langs {{{
@@ -77,7 +77,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-leiningen'
+Plug 'tpope/vim-salve'
 Plug 'Deraen/vim-cider'
 " Plug 'venantius/vim-cljfmt'
 Plug 'vim-scripts/vimwiki', { 'for': 'vimwiki' }
@@ -85,14 +85,15 @@ Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'Lokaltog/vim-easymotion'
 " Plug 'ryanss/vim-hackernews'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Plug 'Shougo/unite.vim'
 Plug 'Keithbsmiley/investigate.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 " Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 " Plug 'nathanaelkane/vim-indent-guides'
+Plug 'evanmiller/nginx-vim-syntax'
 " }}}
 
 call plug#end()
