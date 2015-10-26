@@ -247,6 +247,9 @@ call AddMapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
 " YCM {{{
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+let g:ycm_semantic_triggers = {'clojure' : ['/']}
+let g:ycm_cache_omnifunc = 0
 " }}}
 
 " Ultisnips {{{
@@ -283,8 +286,13 @@ let g:ctrlp_custom_ignore = {
 
 " let g:ctrlp_lazy_update = 50
 
-let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_match_window = 'bottom,order:ttb'
+
+" let g:ctrlp_switch_buffer = 'e'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+
 
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 

@@ -410,7 +410,7 @@ nnoremap N Nzzzv
 " noremap L $
 
 " Open a Quickfix window for the last search
-nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+nnoremap <silent> <leader>s :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 " Fix linewise visual selection of various text objects
 nnoremap Vit vitVkoj
@@ -428,14 +428,14 @@ nnoremap <leader>v V`]
 nnoremap <D-p> "_ddPV`]
 
 " Toggle line number display mode {{{
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <leader>l :call NumberToggle()<cr>
+" function! NumberToggle()
+"   if(&relativenumber == 1)
+"     set number
+"   else
+"     set relativenumber
+"   endif
+" endfunc
+" nnoremap <leader>l :call NumberToggle()<cr>
 " }}}
 
 function! NyanMe() " {{{

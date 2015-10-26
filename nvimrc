@@ -41,6 +41,9 @@ Plug 'guns/vim-sexp'
 Plug 'jimenezrick/vimerl'
 Plug 'lambdatoast/elm.vim'
 Plug 'ajhager/elm-vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'clausreinke/typescript-tools.vim'
+Plug 'evanmiller/nginx-vim-syntax'
 " }}}
 
 " Tools {{{
@@ -54,12 +57,13 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
-" Plug 'jeetsukumaran/vim-buffergator'
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'raymond-w-ko/vim-niji'
 Plug 'rking/ag.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
 " Plug 'sjl/gundo.vim'
+Plug 'mbbill/undotree'
 Plug 'skammer/vim-swaplines'
 " Plug 'terryma/vim-expand-region'
 Plug 'tomtom/tlib_vim'
@@ -87,13 +91,13 @@ Plug 'Lokaltog/vim-easymotion'
 " Plug 'ryanss/vim-hackernews'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 Plug 'Keithbsmiley/investigate.vim'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 " Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 " Plug 'nathanaelkane/vim-indent-guides'
-Plug 'evanmiller/nginx-vim-syntax'
+Plug 'jlanzarotta/bufexplorer'
 " }}}
 
 call plug#end()

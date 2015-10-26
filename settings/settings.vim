@@ -3,7 +3,7 @@
 ""
 
 set nocompatible      " Use vim, no vi defaults
-" set number            " Show line numbers
+set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8    " Set default encoding to UTF-8
@@ -91,8 +91,11 @@ let g:python_host_prog = '/usr/local/bin/python'
 set autoindent
 set smartindent
 set cindent
-" set lazyredraw
-set nolazyredraw
+filetype indent on
+" set omnifunc=syntaxcomplete#Complete
+set lazyredraw
+set wildmenu
+" set nolazyredraw
 " set ttyfast
 set virtualedit+=block
 "set virtualedit=all
@@ -157,12 +160,13 @@ set background=dark
 " colorscheme jellyx
 " colorscheme hemisu
 " colorscheme jellybeans
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 " colorscheme Tomorrow
 " colorscheme sahara
 " colorscheme base16-default
 " colorscheme wombat
-" colorscheme gruvbox
+colorscheme gruvbox
+set background=dark
 
 
 "color getafe
@@ -221,11 +225,12 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 "set cursorline
 
 " Only show cursorline in the current window and in normal mode.
-augroup cline
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
-augroup END
+" augroup cline
+"     au!
+"     au WinLeave,InsertEnter * set nocursorline
+"     au WinEnter,InsertLeave * set cursorline
+" augroup END
+set cursorline
 
 " Run :Lorem to insert famous Lorem iapsum quote
 command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
@@ -264,3 +269,12 @@ function! DeleteInactiveBufs()
     echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bdi :call DeleteInactiveBufs()
+
+
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
