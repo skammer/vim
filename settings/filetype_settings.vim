@@ -69,5 +69,7 @@ if has("autocmd")
 
 endif
 
+" Check for lint errors on open & write
+autocmd BufWritePost,BufEnter *.js,*.jsx silent! Neomake
 
 

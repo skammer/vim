@@ -144,11 +144,19 @@ endfunction
 
 " Syntastic {{{
 "let g:syntastic_quiet_warnings=0
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+" let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_auto_loc_list=2
 let g:syntastic_enable_signs=1
 "let g:syntastic_auto_loc_list=1
 let g:syntastic_disabled_filetypes = ['sass', 'scss', 'css']
+let g:syntastic_javascript_checkers = ['eslint']
+" }}}
+
+" Neomake {{{
+let g:neomake_jsx_enabled_makers = ['eslint']
+" function! neomake#makers#ft#javascript#eslint()
+"     return neomake#makers#ft#jsx#eslint()
+" endfunction
 " }}}
 
 " Tagbar {{{
@@ -248,8 +256,18 @@ call AddMapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
-let g:ycm_semantic_triggers = {'clojure' : ['/']}
+" let g:ycm_semantic_triggers = {'clojure' : ['/']}
 let g:ycm_cache_omnifunc = 0
+
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+set completeopt-=preview
+
+" augroup set_completeopt
+"   au!
+"   au Filetype * set completeopt=menu,preview
+" augroup END
+
 " }}}
 
 " Ultisnips {{{
@@ -280,8 +298,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg$\',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg\|\.DS_Store$\',
   \ }
 
 " let g:ctrlp_lazy_update = 50
@@ -294,7 +312,7 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 
 
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+" let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 "let g:ctrlp_user_command = 'find %s -type f'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
@@ -406,7 +424,8 @@ let g:clojure_align_subforms = 1
 
 
 " Airline {{{
-let g:airline_theme='tomorrow'
+" let g:airline_theme='tomorrow'
+let g:airline_theme='airlineish'
 let g:airline_powerline_fonts=0
 
 if !exists('g:airline_symbols')
@@ -424,6 +443,9 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 " }}}
 
+" Sexp {{{ 
+" let g:sexp_enable_insert_mode_mappings = 0
+" }}}
 
 " Powerline
 " Use compatible symbols in statusline

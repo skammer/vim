@@ -265,9 +265,9 @@ endif
 " }}}
 
 " Edit ~/.vimrc
-map <leader>ed :e ~/.nvimrc<CR>
+map <leader>ed :e ~/.config/nvim/init.vim<CR>
 " Reload ~/.vimrc
-map <leader>rv :source ~/.nvimrc<CR>
+map <leader>rv :source ~/.config/nvim/init.vim<CR>
 " Vertical split
 map <leader>vsp :vnew<cr>
 " Horizontal split

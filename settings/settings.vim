@@ -23,7 +23,7 @@ set backspace=indent,eol,start    " backspace through everything in insert mode
 
 if exists("g:enable_mvim_shift_arrow")
   let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
-endif
+endif  
 
 " List chars
 set listchars=""                  " Reset the listchars
@@ -66,8 +66,8 @@ set wildignore+=*.swp,*~,._*
 "" Backup and swap files
 ""
 
-set backupdir=~/.vim/_backup//    " where to put backup files.
-set directory=~/.vim/_temp//      " where to put swap files.
+set backupdir=~/.config/nvim/_backup/   " where to put backup files.
+set directory=~/.config/nvim/_temp/     " where to put swap files.
 
 if has("gui_running")
   if has("autocmd")
@@ -101,7 +101,7 @@ set virtualedit+=block
 "set virtualedit=all
 set fillchars=diff:⣿,vert:│
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·
-set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:•
 set showbreak=↪
 set linebreak
 "set wrap
@@ -187,11 +187,12 @@ set laststatus=2
 set statusline=%<\ %{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
 
 set foldmethod=syntax
-set foldenable
+" set foldenable
 
 "set foldcolumn=3
 
-"set foldlevelstart=-1
+" set foldlevelstart=-1
+" set foldlevelstart=1
 set foldlevelstart=99
 
 function! MyFoldText()

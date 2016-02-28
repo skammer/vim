@@ -2,7 +2,7 @@
 
 " Setup plugin system {{{
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " }}}
 
@@ -20,6 +20,7 @@ Plug 'vim-scripts/xoria256.vim'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'morhetz/gruvbox'
 Plug 'jeffreyiacono/vim-colors-wombat'
+Plug 'paranoida/vim-airlineish'
 " }}}
 
 " Langs {{{
@@ -44,16 +45,18 @@ Plug 'ajhager/elm-vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'clausreinke/typescript-tools.vim'
 Plug 'evanmiller/nginx-vim-syntax'
+Plug 'neovim/node-host', { 'do': 'npm install' }
+" Plug 'snoe/nvim-parinfer.js'
 " }}}
 
 " Tools {{{
 Plug 'kien/ctrlp.vim'
-Plug 'JazzCore/ctrlp-cmatcher/', { 'do': 'CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments ./install.sh' }
+" Plug 'JazzCore/ctrlp-cmatcher/', { 'do': 'CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments ./install.sh' }
 " Plug 'Raimondi/delimitMate'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'ap/vim-css-color'
 Plug 'edsono/vim-matchit'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
@@ -84,16 +87,21 @@ Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-salve'
 Plug 'Deraen/vim-cider'
 " Plug 'venantius/vim-cljfmt'
+Plug 'venantius/vim-eastwood'
 Plug 'vim-scripts/vimwiki', { 'for': 'vimwiki' }
 Plug 'bling/vim-airline'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+" Plug 'jaxbot/syntastic-react'
+Plug 'benekastah/neomake'
 Plug 'Lokaltog/vim-easymotion'
 " Plug 'ryanss/vim-hackernews'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/unite.vim'
 Plug 'Keithbsmiley/investigate.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+"
 " Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-startify'
 " Plug 'nathanaelkane/vim-indent-guides'
@@ -104,24 +112,24 @@ call plug#end()
 
 " }}}
 
-if filereadable(expand("~/.nvim/settings/settings.vim"))
-  source ~/.nvim/settings/settings.vim
+if filereadable(expand("~/.config/nvim/settings/settings.vim"))
+  source ~/.config/nvim/settings/settings.vim
 endif
 
-if filereadable(expand("~/.nvim/settings/mappings.vim"))
-  source ~/.nvim/settings/mappings.vim
+if filereadable(expand("~/.config/nvim/settings/mappings.vim"))
+  source ~/.config/nvim/settings/mappings.vim
 endif
 
-if filereadable(expand("~/.nvim/settings/abbreviations.vim"))
-  source ~/.nvim/settings/abbreviations.vim
+if filereadable(expand("~/.config/nvim/settings/abbreviations.vim"))
+  source ~/.config/nvim/settings/abbreviations.vim
 endif
 
-if filereadable(expand("~/.nvim/settings/plugin_settings.vim"))
-  source ~/.nvim/settings/plugin_settings.vim
+if filereadable(expand("~/.config/nvim/settings/plugin_settings.vim"))
+  source ~/.config/nvim/settings/plugin_settings.vim
 endif
 
-if filereadable(expand("~/.nvim/settings/filetype_settings.vim"))
-  source ~/.nvim/settings/filetype_settings.vim
+if filereadable(expand("~/.config/nvim/settings/filetype_settings.vim"))
+  source ~/.config/nvim/settings/filetype_settings.vim
 endif
 
 " Fix make in macvim
@@ -151,3 +159,8 @@ set exrc
 
 " must be written at the last.  see :help 'secure'.
 set secure
+
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_python_provider = 1
+let g:python_host_skip_check = 1
+
