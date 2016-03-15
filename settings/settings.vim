@@ -155,7 +155,7 @@ set autoread
 " endif
 
 
-set background=dark
+" set background=dark
 " colorscheme hybrid
 " colorscheme jellyx
 " colorscheme hemisu
@@ -166,6 +166,8 @@ set background=dark
 " colorscheme base16-default
 " colorscheme wombat
 colorscheme gruvbox
+" colorscheme nofrils-dark
+let g:nofrils_strbackgrounds=1
 set background=dark
 
 
