@@ -426,6 +426,7 @@ let g:clojure_align_subforms = 1
 " Airline {{{
 " let g:airline_theme='tomorrow'
 " let g:airline_theme='airlineish'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=0
 
 if !exists('g:airline_symbols')

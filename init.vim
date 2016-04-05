@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Neobundle bundles {{{
 
+Plug 'bling/vim-airline'
 " Themes {{{
 " Plug 'endel/vim-github-colorscheme'
 Plug 'w0ng/vim-hybrid'
@@ -91,7 +92,6 @@ Plug 'Deraen/vim-cider'
 " Plug 'venantius/vim-cljfmt'
 Plug 'venantius/vim-eastwood'
 Plug 'vim-scripts/vimwiki', { 'for': 'vimwiki' }
-Plug 'bling/vim-airline'
 " Plug 'scrooloose/syntastic'
 " Plug 'jaxbot/syntastic-react'
 Plug 'benekastah/neomake'
