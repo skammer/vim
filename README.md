@@ -20,5 +20,5 @@ Voilà! All set and ready to roll.
 You might want to save your old `~/.vim` directory in case you need it
 or something.
 
-Kisses,  
+Kisses,
 Max
