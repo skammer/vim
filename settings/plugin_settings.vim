@@ -81,7 +81,8 @@ endif
 " }}}
 
 " NERDTree {{{
-"let NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 0
+let g:NERDTreeMouseMode = 3
 "let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o$', '\~$']
 
 " alternative mappings
@@ -223,7 +224,7 @@ endif
 " }}}
 
 " Rainbows! {{{
-nmap <leader>R :RainbowParenthesesToggle<CR>
+" nmap <leader>R :RainbowParenthesesToggle<CR>
 " }}}
 
 " HTML tag closing {{{
@@ -253,6 +254,7 @@ let g:used_javascript_libs = 'underscore,angularjs,jquery'
 call AddMapping('zoomwin', 'map', '<leader>zw', ':ZoomWin<CR>')
 
 " YCM {{{
+let g:ycm_server_python_interpreter = '/usr/local/bin/python'
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
@@ -293,12 +295,77 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 " }}}
 
+" Deoplete {{{
+
+let g:deoplete#enable_at_startup = 1
+" let g:deoplete#disable_auto_complete = 1
+let g:deoplete#enable_smart_case = 1
+" let g:deoplete_source_attribute_min_pattern_length=3
+" let g:deoplete#enable_auto_close_preview = 1
+
+" let g:deoplete#omni#functions.javascript = [
+"       \   'jspc#omni',
+"       \   'tern#Complete',
+"       \ ]
+if !exists('g:deoplete#omni#input_patterns')
+  " let g:deoplete#omni#input_patterns = {}
+endif
+
+if !exists('g:deoplete#omni_patterns')
+  let g:deoplete#omni_patterns = {}
+endif
+
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+
+" let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*\|: [A-Z]\w*'
+" let g:deoplete#omni_patterns.clojure = '[[:alnum:]_-]\+'
+
+" let g:deoplete#disable_auto_complete = 1
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" deoplete tab-complete
+" inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" ,<Tab> for regular tab
+" inoremap <Leader><Tab> <Space><Space>
+
+" }}}
+
+" Completion manager {{{
+let g:cm_complete_delay = 100
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<CR>" : "\<CR>")
+inoremap <expr> <UP> (pumvisible() ? "\<c-y>\<UP>" : "\<UP>")
+inoremap <expr> <DOWN> (pumvisible() ? "\<c-y>\<DOWN>" : "\<DOWN>")
+inoremap <expr> <LEFT> (pumvisible() ? "\<c-y>\<LEFT>" : "\<LEFT>")
+inoremap <expr> <RIGHT> (pumvisible() ? "\<c-y>\<RIGHT>" : "\<RIGHT>")
+
+" }}}
+
+" Tern  {{{
+
+if exists('g:plugs["tern_for_vim"]')
+  " let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+
+
+  let g:tern_request_timeout = 1
+  " let g:tern_show_signature_in_pum = 0  " This do disable full signature type on autocomplete
+
+  " let g:tern#command = ["tern"]
+  " let g:tern#arguments = ["--persistent"]
+
+  " autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+
+" autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+
+" }}}
 
 " CtrlP {{{
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg\|\.DS_Store$\',
   \ }
 
@@ -317,6 +384,10 @@ let g:ctrlp_working_path_mode = 0
 "let g:ctrlp_user_command = 'find %s -type f'
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 
+if executable("rg")
+  let g:CtrlSpaceGlobCommand = 'rg -g ""'
+endif
+
 call AddMapping('ctrlp', 'map', '<D-p>', ':CtrlP<CR>')
 call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
@@ -329,14 +400,17 @@ call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 "endif
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
+" if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
-endif
+" endif
 
 
 " }}}
 
+" Racer {{{
+let g:racer_experimental_completer = 1
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite {{{
@@ -426,8 +500,9 @@ let g:clojure_align_subforms = 1
 " Airline {{{
 " let g:airline_theme='tomorrow'
 " let g:airline_theme='airlineish'
-let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts=0
+" let g:airline_theme='gruvbox'
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts=1
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -444,18 +519,45 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 " }}}
 
-" Sexp {{{ 
+" Lightline {{{
+" let g:lightline = {
+"       \ 'colorscheme': 'srcery',
+"       \ }
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+" }}}
+
+" Sexp {{{
 " let g:sexp_enable_insert_mode_mappings = 0
 " }}}
 
-" Powerline
+" vim-racer {{{
+let g:racer_cmd = "/Users/skammer/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+" }}}
+
+" Powerline {{{
 " Use compatible symbols in statusline
 "let g:Powerline_symbols = "compatible"
 "let g::Powerline_symbols = 'fancy'
 " Use a different Powerline cache file for gvim
 let g:Powerline_cache_file = "/tmp/Powerline-gvim.cache"
+" }}}
 
 
+" Ack {{{
+" cnoreabbrev ag Ack
+" cnoreabbrev aG Ack
+" cnoreabbrev Ag Ack
+" cnoreabbrev AG Ack
+
+let g:ackprg = 'ag --vimgrep --smart-case'
+
+if executable("rg")
+  let g:ackprg = 'rg --vimgrep --no-heading'
+endif
+" }}}
 
 " DWM.vim settings
 let g:dwm_map_keys=1
@@ -464,5 +566,11 @@ let g:dwm_map_keys=1
 " Indent gudies {{{
 
 let g:indent_guides_color_change_percent = 5
+
+" }}}
+
+" Clojure Folding {{{
+
+let g:clojure_foldwords = "def,defn,defmacro,defmethod,defschema,defprotocol,defrecord"
 
 " }}}

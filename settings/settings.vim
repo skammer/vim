@@ -3,11 +3,13 @@
 ""
 
 set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
+ " set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
+" syntax off
 set encoding=utf-8    " Set default encoding to UTF-8
-set nohidden          " Do not hide buffers
+" set nohidden          " Do not hide buffers
+set hidden
 
 ""
 "" Whitespace
@@ -34,6 +36,13 @@ set listchars+=extends:>          " The character to show in the last column whe
 set listchars+=precedes:<         " The character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
 
+" insert mode - line
+let &t_SI .= "\<Esc>[5 q"
+"replace mode - underline
+let &t_SR .= "\<Esc>[4 q"
+"common - block
+let &t_EI .= "\<Esc>[3 q"
+
 ""
 "" Searching
 ""
@@ -42,6 +51,7 @@ set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
+set inccommand=nosplit
 
 ""
 "" Wild settings
@@ -93,9 +103,10 @@ set smartindent
 set cindent
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
-set lazyredraw
 set wildmenu
+set lazyredraw
 " set nolazyredraw
+set noshowcmd
 " set ttyfast
 set virtualedit+=block
 "set virtualedit=all
@@ -109,7 +120,7 @@ set linebreak
 "set formatoptions=qrn1
 "set formatoptions=rqan1
 set formatoptions=crqwan1
-set colorcolumn=+1
+" set colorcolumn=+1
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
@@ -165,8 +176,10 @@ set autoread
 " colorscheme sahara
 " colorscheme base16-default
 " colorscheme wombat
-colorscheme gruvbox
 " colorscheme nofrils-dark
+colorscheme gruvbox
+" colorscheme srcery
+" colorscheme goodwolf
 let g:nofrils_strbackgrounds=1
 set background=dark
 
@@ -189,13 +202,14 @@ set laststatus=2
 set statusline=%<\ %{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
 
 set foldmethod=syntax
-" set foldenable
+set foldenable
 
 "set foldcolumn=3
 
 " set foldlevelstart=-1
 " set foldlevelstart=1
 set foldlevelstart=99
+set foldnestmax=1
 
 function! MyFoldText()
     let line = getline(v:foldstart)
@@ -220,8 +234,8 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 " set guifont=Anonymous\ Pro:h12
 " set guifont=Source\ Code\ Pro:h12
 "set guifont=PragmataPro:h13
-set guifont=Anka/Coder:h12
-" set guifont=Fira\ Code:h13
+" set guifont=Anka/Coder:h12
+set guifont=Fira\ Code\ Retina:h13
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 

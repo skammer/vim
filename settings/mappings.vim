@@ -123,8 +123,8 @@ function! s:Pulse() " {{{
     execute 'hi ' . old_hi
 endfunction " }}}
 " }}}
-nnoremap <c-z> mzzMzvzz15<c-e>`z:Pulse<cr>
-command! -nargs=0 Pulse call s:Pulse()
+" nnoremap <c-z> mzzMzvzz15<c-e>`z:Pulse<cr>
+" command! -nargs=0 Pulse call s:Pulse()
 
 " Use the normal HIG movements, except for M-Up/Down {{{
 if has('gui_running')
@@ -538,3 +538,6 @@ vmap <silent> <expr> p <sid>Repl()
 map q: :q
 
 noremap gV `[v`]
+
+autocmd FileType ruby noremap <Leader>r :T rake<CR>
+autocmd FileType rust noremap <Leader>r :RustRun<CR>

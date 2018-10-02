@@ -59,6 +59,23 @@ if has("autocmd")
 endif
 
 " Check for lint errors on open & write
-autocmd BufWritePost,BufEnter *.js,*.jsx silent! Neomake
+" autocmd BufWritePost,BufEnter *.js,*.jsx silent! Neomake
 
+autocmd BufNewFile,BufRead *.boot set ft=clojure
+autocmd BufNewFile,BufRead *.pcss set ft=css
 
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+
+" autocmd! BufWritePost *.rb Neomake
+
+if exists('g:plugs["tern_for_vim"]')
+  " autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif

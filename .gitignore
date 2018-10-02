@@ -6,3 +6,5 @@ _backup
 bundle_vundle
 unite
 plugged
+autoload/plug.vim
+autoload/plug.vim.old
