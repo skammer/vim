@@ -263,7 +263,6 @@ let g:ycm_cache_omnifunc = 0
 
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
-set completeopt-=preview
 
 " augroup set_completeopt
 "   au!
@@ -365,7 +364,7 @@ endif
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$\|.shadow-cljs$\|cljs-runtime',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg\|\.DS_Store$\',
   \ }
 
@@ -494,6 +493,7 @@ let s:unite_ignores = [
 
 " Clojure {{{
 let g:clojure_align_subforms = 1
+let g:clojure_maxlines = 0
 " }}}
 
 
@@ -573,4 +573,10 @@ let g:indent_guides_color_change_percent = 5
 
 let g:clojure_foldwords = "def,defn,defmacro,defmethod,defschema,defprotocol,defrecord"
 
+" }}}
+
+" Language Client {{{
+let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls']
+      \ }
 " }}}

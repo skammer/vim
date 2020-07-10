@@ -1,10 +1,10 @@
 " vim:ft=vim foldmethod=marker
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/local/bin/pyton'
-let g:loaded_python_provider = 1
-let g:python_host_skip_check = 1
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python_host_prog = '/usr/local/bin/pyton'
+" let g:loaded_python_provider = 1
+" let g:python_host_skip_check = 1
 
 " Setup plugin system {{{
 
@@ -35,8 +35,6 @@ Plug 'morhetz/gruvbox'
 " Plug 'jeffreyiacono/vim-colors-wombat'
 " Plug 'paranoida/vim-airlineish'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'robertmeta/nofrils'
-Plug 'sjl/badwolf'
 
 Plug 'jacoborus/tender.vim'
 Plug 'tyrannicaltoucan/vim-quantum'
@@ -53,6 +51,21 @@ Plug 'CallumHoward/vim-neodark'
 
 Plug 'srcery-colors/srcery-vim'
 
+"" High contrast themes
+
+Plug 'xdefrag/vim-beelzebub'
+Plug 'Rsidhoum/bushfire'
+Plug 'Drogglbecher/vim-moonscape'
+Plug 'sjl/badwolf'
+Plug 'robertmeta/nofrils'
+Plug 'ayu-theme/ayu-vim'
+Plug 'clinstid/eink.vim'
+Plug 'colepeters/spacemacs-theme.vim'
+Plug 'BrainDeath0/Hypsteria'
+Plug 'vim-scripts/Gummybears'
+Plug 'vim-scripts/bw.vim'
+
+
 " }}}
 
 " Langs {{{
@@ -63,9 +76,8 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'sirtaj/vim-openscad'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
-" Plug 'slim-template/vim-slim'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
-Plug 'alexlafroscia/postcss-syntax.vim'
+Plug 'lepture/vim-css'
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
@@ -79,7 +91,7 @@ Plug 'roxma/clang_complete'
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-Plug 'roxma/nvim-cm-racer'
+" Plug 'roxma/nvim-cm-racer'
 " Plug 'sebastianmarkow/deoplete-rust'
 
 " Clojure
@@ -88,35 +100,19 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 
-Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
-Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
-Plug 'ajhager/elm-vim', { 'for': 'elm' }
-" Plug 'clausreinke/typescript-tools.vim'
 Plug 'neovim/node-host', { 'do': 'npm install' }
-" Plug 'snoe/nvim-parinfer.js'
 Plug 'mv/mv-vim-nginx'
 " }}}
 
 " Tools {{{
 Plug 'kien/ctrlp.vim'
-" Plug 'JazzCore/ctrlp-cmatcher/', { 'do': 'CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments ./install.sh' }
-  " Plug 'Raimondi/delimitMate'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'ap/vim-css-color'
-" Plug 'edsono/vim-matchit'
-  " Plug 'ervandew/supertab'
-  " Plug 'SirVer/ultisnips'
-  " Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
-" Plug 'jeetsukumaran/vim-buffergator'
-" Plug 'raymond-w-ko/vim-niji'
 Plug 'mileszs/ack.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
-" Plug 'sjl/gundo.vim'
 Plug 'mbbill/undotree'
 Plug 'skammer/vim-swaplines'
-" Plug 'terryma/vim-expand-region'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
@@ -131,34 +127,43 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-projectionist'
+
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-Plug 'tpope/vim-vinegar'
-Plug 'clojure-vim/vim-cider', { 'for': 'clojure' }
+" Plug 'tpope/vim-vinegar'
+
+" Plug 'clojure-vim/vim-cider', { 'for': 'clojure' }
+" Plug 'clojure-vim/acid.nvim', { 'for': 'clojure' }
+" Plug 'clojure-vim/async-clj-omni', { 'for': 'clojure' }
 Plug 'gberenfield/cljfold.vim', { 'for': 'clojure' }
-" Plug 'markwoodhall/vim-figwheel', { 'for': 'clojure' }
-" Plug 'venantius/vim-cljfmt'
-Plug 'venantius/vim-eastwood'
+" Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' }
+" Plug 'clojure-vim/clj-refactor.nvim', { 'for': 'clojure' }
+" Plug 'clojure-vim/async-clj-highlight', { 'for': 'clojure' }
+Plug 'radenling/vim-dispatch-neovim', { 'for': 'clojure' }
+Plug 'Vigemus/impromptu.nvim'
+Plug 'clojure-vim/jazz.nvim'
+
+
 Plug 'vim-scripts/vimwiki', { 'for': 'vimwiki' }
-" Plug 'scrooloose/syntastic'
-" Plug 'jaxbot/syntastic-react'
-" Plug 'benekastah/neomake'
 Plug 'Lokaltog/vim-easymotion'
-" Plug 'ryanss/vim-hackernews'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
+
+Plug 'vim-scripts/dbext.vim'
 
 " Deoplete makes everything so fucking slow
-Plug 'clojure-vim/acid.nvim', { 'for': 'clojure' }
 
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-jedi'
 " Plug 'carlitux/deoplete-ternjs'
-Plug 'clojure-vim/async-clj-omni'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 Plug 'Keithbsmiley/investigate.vim'
 Plug 'kassio/neoterm'
@@ -166,9 +171,23 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+
+Plug 'dart-lang/dart-vim-plugin'
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/float-preview.nvim'
+" Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-cssomni'
+
+" Plug 'qxxxb/vim-searchhi'
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
 
 " Live linter
 " Plug 'w0rp/ale'
@@ -206,6 +225,12 @@ if filereadable(expand("~/.config/nvim/settings/plugin_settings.vim"))
   source ~/.config/nvim/settings/plugin_settings.vim
 endif
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Fix make in macvim
 if filereadable("Makefile")
   set makeprg=cd\ %:p:h\ &&\ make\ -j
@@ -231,3 +256,7 @@ let g:clojure_fold = 1
 " set secure
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+if exists('g:vv')
+  VVset fontfamily=Fira\ Code
+endif
