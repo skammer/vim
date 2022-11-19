@@ -75,8 +75,8 @@ if has("gui_macvim") && has("gui_running")
   call AddMapping('tcomment', 'map', '<D-/>', ':TComment<CR>')
   call AddMapping('tcomment', 'imap', '<D-/>', '<Esc>:TComment<CR>')
 else
-  call AddMapping('tcomment', 'map', '<leader>/', ':TComment<CR>')
-  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>:TComment<CR>')
+  call AddMapping('tcomment', 'map', '<leader>/', 'gcc')
+  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>gcc')
 endif
 " }}}
 
@@ -90,7 +90,8 @@ let g:NERDTreeMouseMode = 3
 "let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Default mapping, <leader>n
-call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
+" call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
+call AddMapping('nerdtree', 'map', '<leader>n', ':NvimTreeToggle<CR>')
 
 "augroup AuNERDTreeCmd
 "autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))
@@ -263,7 +264,6 @@ let g:ycm_cache_omnifunc = 0
 
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
-set completeopt-=preview
 
 " augroup set_completeopt
 "   au!
@@ -365,7 +365,7 @@ endif
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$\|.shadow-cljs$\|cljs-runtime',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg\|\.DS_Store$\',
   \ }
 
@@ -401,8 +401,8 @@ call AddMapping('ctrlp', 'imap', '<D-p>', '<ESC>:CtrlP<CR>')
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 " if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
+"   Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --column -g ""'
 " endif
 
 
@@ -494,6 +494,7 @@ let s:unite_ignores = [
 
 " Clojure {{{
 let g:clojure_align_subforms = 1
+let g:clojure_maxlines = 0
 " }}}
 
 
@@ -573,4 +574,10 @@ let g:indent_guides_color_change_percent = 5
 
 let g:clojure_foldwords = "def,defn,defmacro,defmethod,defschema,defprotocol,defrecord"
 
+" }}}
+
+" Language Client {{{
+let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls']
+      \ }
 " }}}

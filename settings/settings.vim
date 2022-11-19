@@ -3,7 +3,7 @@
 ""
 
 set nocompatible      " Use vim, no vi defaults
- " set number            " Show line numbers
+set number            " Show line numbers
 set ruler             " Show line and column number
 syntax enable         " Turn on syntax highlighting allowing local overrides
 " syntax off
@@ -15,9 +15,9 @@ set hidden
 "" Whitespace
 ""
 
-" set nowrap                        " don't wrap lines
-set wrap                          " wrap lines
-set tabstop=2                     " a tab is two spaces
+set nowrap                        " don't wrap lines
+" set wrap                          " wrap lines
+set tabstop=2 softtabstop=2       " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
@@ -25,7 +25,7 @@ set backspace=indent,eol,start    " backspace through everything in insert mode
 
 if exists("g:enable_mvim_shift_arrow")
   let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
-endif  
+endif
 
 " List chars
 set listchars=""                  " Reset the listchars
@@ -36,18 +36,19 @@ set listchars+=extends:>          " The character to show in the last column whe
 set listchars+=precedes:<         " The character to show in the last column when wrap is
                                   " off and the line continues beyond the right of the screen
 
-" insert mode - line
-let &t_SI .= "\<Esc>[5 q"
-"replace mode - underline
-let &t_SR .= "\<Esc>[4 q"
-"common - block
-let &t_EI .= "\<Esc>[3 q"
+" " insert mode - line
+" let &t_SI .= "\<Esc>[5 q"
+" "replace mode - underline
+" let &t_SR .= "\<Esc>[4 q"
+" "common - block
+" let &t_EI .= "\<Esc>[3 q"
 
 ""
 "" Searching
 ""
 
-set hlsearch    " highlight matches
+" set hlsearch    " highlight matches
+set nohlsearch
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
@@ -76,7 +77,10 @@ set wildignore+=*.swp,*~,._*
 "" Backup and swap files
 ""
 
+set undofile
+
 set backupdir=~/.config/nvim/_backup/   " where to put backup files.
+set undodir=~/.config/nvim/_backup/   " where to put backup files.
 set directory=~/.config/nvim/_temp/     " where to put swap files.
 
 if has("gui_running")
@@ -86,28 +90,32 @@ if has("gui_running")
   endif
 endif
 
-if has("autocmd")
-  if exists("g:autosave_on_blur")
-    au FocusLost * silent! wall
-  endif
-endif
+" if has("autocmd")
+"   if exists("g:autosave_on_blur")
+"     au FocusLost * silent! wall
+"   endif
+" endif
 
 "
 " My custom settings
 "
 
-let g:ruby_path = '/Users/skammer/.rbenv/shims/ruby'
-let g:python_host_prog = '/usr/local/bin/python'
 set autoindent
 set smartindent
 set cindent
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
+set completeopt=noinsert,menuone,noselect,longest
 set wildmenu
-set lazyredraw
-" set nolazyredraw
+" on slow connections
+" set lazyredraw
+" set nottyfast
+
+" on fast connections
+set nolazyredraw
+set ttyfast
+
 set noshowcmd
-" set ttyfast
 set virtualedit+=block
 "set virtualedit=all
 set fillchars=diff:⣿,vert:│
@@ -122,24 +130,8 @@ set linebreak
 set formatoptions=crqwan1
 " set colorcolumn=+1
 
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
-
-" This rewires n and N to do the highlighing...
-nnoremap <silent> n   n:call HLNext(0.4)<cr>
-nnoremap <silent> N   N:call HLNext(0.4)<cr>
-
-function! HLNext (blinktime)
-    let [bufnum, lnum, col, off] = getpos('.')
-    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-    let target_pat = '\c\%#'.@/
-    let ring = matchadd('WhiteOnRed', target_pat, 101)
-    redraw
-    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-    call matchdelete(ring)
-    redraw
-endfunction
-
+" highlight ColorColumn ctermbg=magenta
+" call matchadd('ColorColumn', '\%81v', 100)
 
 "set guioptions-=elLrR
 "set guioptions+=c
@@ -151,7 +143,7 @@ set guioptions=c
 "set shell=zsh\ -i
 
 " Don't try to highlight lines longer than 800 characters.
-set synmaxcol=1000
+" set synmaxcol=1000
 
 set autowrite
 set autoread
@@ -177,12 +169,42 @@ set autoread
 " colorscheme base16-default
 " colorscheme wombat
 " colorscheme nofrils-dark
-colorscheme gruvbox
+"
+"
 " colorscheme srcery
 " colorscheme goodwolf
+" colorscheme gummybears
+" colorscheme badwolf
+" colorscheme default
+" colorscheme tender
+" colorscheme purify
+colorscheme gruvbox
+" colorscheme spacemacs-theme
 let g:nofrils_strbackgrounds=1
 set background=dark
 
+highlight MatchParen ctermfg=208 ctermbg=233 cterm=bold
+" hi! Search term=standout gui=standout ctermfg=208 ctermbg=233 cterm=bold
+" hi! Search term=standout gui=standout guifg=#fac863 guibg=#65737e
+" hi Search      term=reverse ctermfg=0   ctermbg=3  guifg=#000000 guibg=#D0B03C
+" hi SearchBlink term=reverse ctermfg=0   ctermbg=13 guifg=#000000 guibg=#FBB1F9
+
+hi Cursor ctermbg=172
+
+" This rewires n and N to do the highlighing...
+" nnoremap <silent> n   n:call HLNext(0.4)<cr>
+" nnoremap <silent> N   N:call HLNext(0.4)<cr>
+"
+" function! HLNext (blinktime)
+"     let [bufnum, lnum, col, off] = getpos('.')
+"     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+"     let target_pat = '\c\%#'.@/
+"     let ring = matchadd('WhiteOnRed', target_pat, 101)
+"     redraw
+"     exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+"     call matchdelete(ring)
+"     redraw
+" endfunction
 
 "color getafe
 " Do not display uganda crap
@@ -190,6 +212,7 @@ set shortmess=aoOtTI
 
 " Make terminal play nicely
 set t_Co=256
+" set termguicolors
 set mouse+=a
 " set ttymouse=xterm2
 
@@ -235,11 +258,12 @@ set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:f
 " set guifont=Source\ Code\ Pro:h12
 "set guifont=PragmataPro:h13
 " set guifont=Anka/Coder:h12
-set guifont=Fira\ Code\ Retina:h13
+" set guifont=Fira\ Code\ Retina:h13
+set guifont=Fira\ Code:h13
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 
-"set cursorline
+" set cursorline
 
 " Only show cursorline in the current window and in normal mode.
 " augroup cline
@@ -247,7 +271,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 "     au WinLeave,InsertEnter * set nocursorline
 "     au WinEnter,InsertLeave * set cursorline
 " augroup END
-set cursorline
+" set cursorline
+" set guicursor=
 
 " Run :Lorem to insert famous Lorem iapsum quote
 command! -nargs=0 Lorem :normal iLorem ipsum dolor sit amet, consectetur
@@ -288,10 +313,10 @@ endfunction
 command! Bdi :call DeleteInactiveBufs()
 
 
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+" if exists('$TMUX')
+"     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" else
+"     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
