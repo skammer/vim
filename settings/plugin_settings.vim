@@ -75,8 +75,8 @@ if has("gui_macvim") && has("gui_running")
   call AddMapping('tcomment', 'map', '<D-/>', ':TComment<CR>')
   call AddMapping('tcomment', 'imap', '<D-/>', '<Esc>:TComment<CR>')
 else
-  call AddMapping('tcomment', 'map', '<leader>/', ':TComment<CR>')
-  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>:TComment<CR>')
+  call AddMapping('tcomment', 'map', '<leader>/', 'gcc')
+  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>gcc')
 endif
 " }}}
 
@@ -90,7 +90,7 @@ let g:NERDTreeMouseMode = 3
 "let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Default mapping, <leader>n
-call AddMapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
+call AddMapping('nerdtree', 'map', '<leader>n', ':NvimTreeToggle<CR>')
 
 "augroup AuNERDTreeCmd
 "autocmd AuNERDTreeCmd VimEnter * call CdIfDirectory(expand("<amatch>"))

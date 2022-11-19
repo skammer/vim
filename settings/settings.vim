@@ -76,7 +76,10 @@ set wildignore+=*.swp,*~,._*
 "" Backup and swap files
 ""
 
+set undofile
+
 set backupdir=~/.config/nvim/_backup/   " where to put backup files.
+set undodir=~/.config/nvim/_backup/   " where to put backup files.
 set directory=~/.config/nvim/_temp/     " where to put swap files.
 
 if has("gui_running")
@@ -86,29 +89,36 @@ if has("gui_running")
   endif
 endif
 
-if has("autocmd")
-  if exists("g:autosave_on_blur")
-    au FocusLost * silent! wall
-  endif
-endif
+" if has("autocmd")
+"   if exists("g:autosave_on_blur")
+"     au FocusLost * silent! wall
+"   endif
+" endif
 
 "
 " My custom settings
 "
 
-let g:ruby_path = '/Users/skammer/.rbenv/shims/ruby'
-let g:python_host_prog = '/usr/local/bin/python'
+" let g:ruby_path = '/Users/skammer/.rbenv/shims/ruby'
+" let g:python_host_prog = '/usr/local/bin/python'
 set autoindent
 set smartindent
 set cindent
 filetype indent on
 " set omnifunc=syntaxcomplete#Complete
 " set completeopt=noinsert,menuone,noselect
+set completeopt=noinsert,menuone,noselect,longest
 set wildmenu
-set lazyredraw
-" set nolazyredraw
+
+" on slow connections
+" set lazyredraw
+" set nottyfast
+
+" on fast connections
+set nolazyredraw
+set ttyfast
+
 set noshowcmd
-" set ttyfast
 set virtualedit+=block
 "set virtualedit=all
 set fillchars=diff:⣿,vert:│
@@ -136,7 +146,7 @@ set guioptions=c
 "set shell=zsh\ -i
 
 " Don't try to highlight lines longer than 800 characters.
-" set synmaxcol=1000
+set synmaxcol=500
 
 set autowrite
 set autoread

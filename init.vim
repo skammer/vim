@@ -32,38 +32,38 @@ Plug 'itchyny/lightline.vim'
 " Plug 'vim-scripts/xoria256.vim'
 " Plug 'noahfrederick/vim-hemisu'
 Plug 'morhetz/gruvbox'
-" Plug 'jeffreyiacono/vim-colors-wombat'
+Plug 'jeffreyiacono/vim-colors-wombat'
 " Plug 'paranoida/vim-airlineish'
 " Plug 'vim-airline/vim-airline-themes'
 
-Plug 'jacoborus/tender.vim'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'jacoborus/tender'
-Plug 'ajh17/spacegray.vim'
-Plug 'rakr/vim-one'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'mhartington/oceanic-next'
-Plug 'joshdick/onedark.vim'
-
-Plug 'owickstrom/vim-colors-paramount'
-Plug 'robertmeta/nofrils'
-Plug 'CallumHoward/vim-neodark'
-
-Plug 'srcery-colors/srcery-vim'
+" Plug 'jacoborus/tender.vim'
+" Plug 'tyrannicaltoucan/vim-quantum'
+" Plug 'jacoborus/tender'
+" Plug 'ajh17/spacegray.vim'
+" Plug 'rakr/vim-one'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'mhartington/oceanic-next'
+" Plug 'joshdick/onedark.vim'
+"
+" Plug 'owickstrom/vim-colors-paramount'
+" Plug 'robertmeta/nofrils'
+" Plug 'CallumHoward/vim-neodark'
+"
+" Plug 'srcery-colors/srcery-vim'
 
 "" High contrast themes
 
-Plug 'xdefrag/vim-beelzebub'
-Plug 'Rsidhoum/bushfire'
-Plug 'Drogglbecher/vim-moonscape'
-Plug 'sjl/badwolf'
-Plug 'robertmeta/nofrils'
-Plug 'ayu-theme/ayu-vim'
-Plug 'clinstid/eink.vim'
-Plug 'colepeters/spacemacs-theme.vim'
-Plug 'BrainDeath0/Hypsteria'
-Plug 'vim-scripts/Gummybears'
-Plug 'vim-scripts/bw.vim'
+" Plug 'xdefrag/vim-beelzebub'
+" Plug 'Rsidhoum/bushfire'
+" Plug 'Drogglbecher/vim-moonscape'
+" Plug 'sjl/badwolf'
+" Plug 'robertmeta/nofrils'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'clinstid/eink.vim'
+" Plug 'colepeters/spacemacs-theme.vim'
+" Plug 'BrainDeath0/Hypsteria'
+" Plug 'vim-scripts/Gummybears'
+" Plug 'vim-scripts/bw.vim'
 
 
 " }}}
@@ -75,13 +75,13 @@ Plug 'vim-scripts/bw.vim'
 "
 Plug 'sirtaj/vim-openscad'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
+" Plug 'groenewege/vim-less', { 'for': 'less' }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'lepture/vim-css'
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 " Plug 'othree/yajs.vim'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'vim-scripts/Superior-Haskell-Interaction-Mode-SHIM', { 'for': 'haskell' }
@@ -106,11 +106,18 @@ Plug 'mv/mv-vim-nginx'
 
 " Tools {{{
 Plug 'kien/ctrlp.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
-Plug 'mileszs/ack.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'scrooloose/nerdtree'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
+" Plug 'junegunn/vim-easy-align'
+" Plug 'mileszs/ack.vim'
+" Plug 'tomtom/tcomment_vim'
+" Plug 'scrooloose/nerdtree'
+Plug 'numToStr/Comment.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
+
 Plug 'mbbill/undotree'
 Plug 'skammer/vim-swaplines'
 Plug 'tomtom/tlib_vim'
@@ -136,8 +143,8 @@ Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 " Plug 'tpope/vim-vinegar'
 
 " Plug 'clojure-vim/vim-cider', { 'for': 'clojure' }
-" Plug 'clojure-vim/acid.nvim', { 'for': 'clojure' }
-" Plug 'clojure-vim/async-clj-omni', { 'for': 'clojure' }
+Plug 'clojure-vim/acid.nvim', { 'for': 'clojure' }
+Plug 'clojure-vim/async-clj-omni', { 'for': 'clojure' }
 Plug 'gberenfield/cljfold.vim', { 'for': 'clojure' }
 " Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' }
 " Plug 'clojure-vim/clj-refactor.nvim', { 'for': 'clojure' }
@@ -173,19 +180,22 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 
-Plug 'dart-lang/dart-vim-plugin'
+" Plug 'dart-lang/dart-vim-plugin'
 
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/float-preview.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/float-preview.nvim'
 " Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-racer'
-Plug 'ncm2/ncm2-cssomni'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2-racer'
+" Plug 'ncm2/ncm2-cssomni'
 
 " Plug 'qxxxb/vim-searchhi'
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
 
@@ -202,6 +212,17 @@ set completeopt=noinsert,menuone,noselect
 " }}}
 
 call plug#end()
+
+
+lua << EOF
+require('nvim-autopairs').setup {}
+EOF
+
+lua require('Comment').setup()
+
+lua require("nvim-tree").setup()
+
+
 
 " }}}
 
