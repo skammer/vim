@@ -33,6 +33,8 @@ Plug 'itchyny/lightline.vim'
 " Plug 'noahfrederick/vim-hemisu'
 Plug 'morhetz/gruvbox'
 Plug 'jeffreyiacono/vim-colors-wombat'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'sainnhe/gruvbox-material'
 " Plug 'paranoida/vim-airlineish'
 " Plug 'vim-airline/vim-airline-themes'
 

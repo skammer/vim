@@ -172,14 +172,22 @@ set autoread
 " colorscheme base16-default
 " colorscheme wombat
 " colorscheme nofrils-dark
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme srcery
 " colorscheme goodwolf
 " colorscheme gummybears
 " colorscheme badwolf
 " colorscheme default
-let g:nofrils_strbackgrounds=1
+" let g:nofrils_strbackgrounds=1
+if has('termguicolors')
+  set termguicolors
+endif
 set background=dark
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+
+" colorscheme kanagawa
 
 
 highlight MatchParen ctermfg=208 ctermbg=233 cterm=bold
@@ -268,7 +276,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/public/assets/*     " MacOSX/Linux
 "     au WinLeave,InsertEnter * set nocursorline
 "     au WinEnter,InsertLeave * set cursorline
 " augroup END
-" set cursorline
+set cursorline
 " set guicursor=
 
 " Run :Lorem to insert famous Lorem iapsum quote
