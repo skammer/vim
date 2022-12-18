@@ -67,6 +67,14 @@ Plug 'sainnhe/gruvbox-material'
 " Plug 'vim-scripts/Gummybears'
 " Plug 'vim-scripts/bw.vim'
 
+" Nvim themes
+Plug 'EdenEast/nightfox.nvim'
+Plug 'sainnhe/edge'
+Plug 'fenetikm/falcon'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'catppuccin/nvim'
+Plug 'folke/tokyonight.nvim'
 
 " }}}
 
@@ -95,6 +103,8 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 " Plug 'roxma/nvim-cm-racer'
 " Plug 'sebastianmarkow/deoplete-rust'
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
 
 " Clojure
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }

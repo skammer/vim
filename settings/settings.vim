@@ -10,6 +10,7 @@ syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8    " Set default encoding to UTF-8
 " set nohidden          " Do not hide buffers
 set hidden
+set signcolumn=yes
 
 ""
 "" Whitespace
@@ -51,7 +52,8 @@ set listchars+=precedes:<         " The character to show in the last column whe
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
-set inccommand=nosplit
+" set inccommand=nosplit
+let &inccommand = ""
 
 ""
 "" Wild settings
