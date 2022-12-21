@@ -138,7 +138,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
-" Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-rake'
@@ -149,19 +149,19 @@ Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-projectionist'
 
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
-Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-classpath'
 " Plug 'tpope/vim-vinegar'
 
-" Plug 'clojure-vim/vim-cider', { 'for': 'clojure' }
-Plug 'clojure-vim/acid.nvim', { 'for': 'clojure' }
-Plug 'clojure-vim/async-clj-omni', { 'for': 'clojure' }
-Plug 'gberenfield/cljfold.vim', { 'for': 'clojure' }
-" Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' }
+Plug 'clojure-vim/vim-cider'
+" Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'clojure-vim/async-clj-omni'
+Plug 'gberenfield/cljfold.vim'
+Plug 'clojure-vim/vim-jack-in'
 " Plug 'clojure-vim/clj-refactor.nvim', { 'for': 'clojure' }
-" Plug 'clojure-vim/async-clj-highlight', { 'for': 'clojure' }
-Plug 'radenling/vim-dispatch-neovim', { 'for': 'clojure' }
+Plug 'clojure-vim/async-clj-highlight'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'Vigemus/impromptu.nvim'
 Plug 'clojure-vim/jazz.nvim'
 
