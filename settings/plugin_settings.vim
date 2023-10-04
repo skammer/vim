@@ -75,8 +75,8 @@ if has("gui_macvim") && has("gui_running")
   call AddMapping('tcomment', 'map', '<D-/>', ':TComment<CR>')
   call AddMapping('tcomment', 'imap', '<D-/>', '<Esc>:TComment<CR>')
 else
-  call AddMapping('tcomment', 'map', '<leader>/', 'gcc')
-  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>gcc')
+  call AddMapping('tcomment', 'map', '<leader>/', 'gcc<Esc>')
+  call AddMapping('tcomment', 'imap', '<leader>/', '<Esc>gcc<Esc>')
 endif
 " }}}
 
