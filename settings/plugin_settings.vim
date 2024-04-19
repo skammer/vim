@@ -364,7 +364,7 @@ endif
 "let g:ctrlp_map = ''
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$\|.shadow-cljs$\|cljs-runtime',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|tmp$\|node_modules\|.idea$\|target\|out\|.cljs_rhino_repl\|nashorn_code_cache\|resources/public/js/build$\|.shadow-cljs$\|cljs-runtime\|.clj-kondo',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|\.png$\|\.jpg\|\.DS_Store$\',
   \ }
 

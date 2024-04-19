@@ -171,6 +171,8 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
+Plug 'vim-scripts/forth.vim'
+
 Plug 'vim-scripts/dbext.vim'
 
 " Deoplete makes everything so fucking slow
@@ -196,6 +198,12 @@ Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
+
+
+" LLMs
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'dpayne/CodeGPT.nvim'
 
 " Plug 'ncm2/ncm2'
 " Plug 'roxma/nvim-yarp'
