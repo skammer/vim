@@ -13,7 +13,7 @@ endfunction
 
 " VimWiki {{{
 let g:vimwiki_use_mouse  = 1
-let g:vimwiki_folding    = 1
+" let g:vimwiki_folding    = 1
 let g:vimwiki_fold_lists = 1
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_auto_checkbox = 1

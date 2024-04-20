@@ -3,6 +3,7 @@ bundle
 _temp
 _bundle
 _backup
+_undo
 bundle_vundle
 unite
 plugged

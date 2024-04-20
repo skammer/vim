@@ -28,14 +28,14 @@ if exists("g:enable_mvim_shift_arrow")
   let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
 endif  
 
-" List chars
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
+" " List chars
+" set listchars=""                  " Reset the listchars
+" set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
+" set listchars+=trail:.            " show trailing spaces as dots
+" set listchars+=extends:>          " The character to show in the last column when wrap is
+"                                   " off and the line continues beyond the right of the screen
+" set listchars+=precedes:<         " The character to show in the last column when wrap is
+"                                   " off and the line continues beyond the right of the screen
 
 " " insert mode - line
 " let &t_SI .= "\<Esc>[5 q"
