@@ -6,9 +6,6 @@ if filereadable(expand("~/.config/nvim/settings/mappings.vim"))
   source ~/.config/nvim/settings/mappings.vim
 endif
 
-if filereadable(expand("~/.config/nvim/settings/abbreviations.vim"))
-  source ~/.config/nvim/settings/abbreviations.vim
-endif
 
 if filereadable(expand("~/.config/nvim/settings/filetype_settings.vim"))
   source ~/.config/nvim/settings/filetype_settings.vim
@@ -38,6 +35,7 @@ require("lazy").setup(require("plugins"))
 
 require("configs")
 require("mappings")
+require("abbreviations")
 
 
 require("mason").setup({
@@ -78,4 +76,9 @@ local config = {
 -- require("chatgpt").setup(config)
 
 
+vim.keymap.set("n", "<c-P>",
+  "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 
+
+vim.keymap.set("n", "<c-F>",
+  "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })

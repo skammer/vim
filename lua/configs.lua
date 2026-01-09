@@ -73,10 +73,15 @@ set.mouse = "a"
 
 set.undofile = true
 
-set.backupdir = "_backup/"
-set.undodir = "_undo/"
-set.directory = "_temp/"
+-- set.backupdir = "~/.config/nvim/_backup/"
+-- set.undodir = "~/.config/nvim/_undo/"
+-- set.directory = "./_temp/"
 
+-- set.backup = true
+-- set.backupdir = fn.stdpath('config') .. '/backup'
+-- set.undofile = true
+-- set.undodir = fn.stdpath('config') .. '/undo'
+-- set.directory = fn.stdpath('config') .. '/swap'
 
 -- set.autoindent = true
 -- set.smartindent = true
@@ -121,7 +126,8 @@ set.shortmess = "aoOtTI"
 
 set.shiftround = true
 
-set.laststatus = 2
+set.laststatus = 3
+
 
 -- set statusline=%<\ %{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
 
@@ -147,3 +153,10 @@ if U.is_linux() then
 elseif U.is_mac() then
     vim.g.python3_host_prog = "/usr/local/bin/python3"
 end
+
+-- require('avante').setup({
+--   rules = {
+--     project_dir = '.avante/rules', -- relative to project root, can also be an absolute path
+--     global_dir = '~/.config/avante/rules', -- absolute path
+--   },
+-- })

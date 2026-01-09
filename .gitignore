@@ -9,3 +9,4 @@ unite
 plugged
 autoload/plug.vim
 autoload/plug.vim.old
+lazy-lock.json

@@ -3,8 +3,8 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
+      -- vim.o.timeout = true
+      -- vim.o.timeoutlen = 300
     end,
     opts = {
       -- your configuration comes here
@@ -37,7 +37,7 @@ return {
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_better_performance = 1
 
-      vim.cmd([[colorscheme gruvbox-material]])
+      -- vim.cmd([[colorscheme gruvbox-material]])
     end
   },
   {
@@ -46,6 +46,14 @@ return {
     priority = 1000,
     config = function()
       -- vim.cmd([[colorscheme gruvbox]])
+    end
+  },
+  {
+    'p00f/alabaster.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme alabaster]])
     end
   },
   {
@@ -78,6 +86,16 @@ return {
       -- add any options here
     },
     lazy = false,
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup({})
+    end
   },
 
   'nvim-tree/nvim-tree.lua',
@@ -189,12 +207,12 @@ return {
   "neovim/nvim-lspconfig",
   {
     'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
+    version = '^5', -- Recommended
     lazy = false, -- This plugin is already lazy
   },
 
   -- clojure
-  "Olical/conjure",
+  -- "Olical/conjure",
   'guns/vim-clojure-highlight',
   'guns/vim-clojure-static',
   'guns/vim-sexp',
@@ -222,4 +240,113 @@ return {
 
   -- vimwiki
   'vimwiki/vimwiki',
+
+
+  {
+    "yetone/avante.nvim",
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ must add this setting! ! !
+    build = vim.fn.has("win32") ~= 0
+    and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+    or "make",
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    keys = {
+        {
+            "<leader>a+",
+            function()
+                local tree_ext = require("avante.extensions.nvim_tree")
+                tree_ext.add_file()
+            end,
+            desc = "Select file in NvimTree",
+            ft = "NvimTree",
+        },
+        {
+            "<leader>a-",
+            function()
+                local tree_ext = require("avante.extensions.nvim_tree")
+                tree_ext.remove_file()
+            end,
+            desc = "Deselect file in NvimTree",
+            ft = "NvimTree",
+        },
+    },
+    opts = {
+      -- add any opts here
+      -- for example
+      provider = "deepseek",
+      providers = {
+        -- ollama = {
+        --   endpoint = "http://localhost:11434",
+        --   model = "gpt-oss:20b",
+        -- },
+        -- claude = {
+        --   endpoint = "https://api.anthropic.com",
+        --   model = "claude-sonnet-4-20250514",
+        --   timeout = 30000, -- Timeout in milliseconds
+        --   extra_request_body = {
+        --     temperature = 0.75,
+        --     max_tokens = 20480,
+        --   },
+        -- },
+        deepseek = {
+          __inherited_from = "openai",
+          endpoint = "https://api.deepseek.com/v1",
+          model = "deepseek-reasoner",
+          timeout = 30000, -- Timeout in milliseconds
+          extra_request_body = {
+            temperature = 0.75,
+            max_tokens = 32768,
+          },
+          api_key_name = "DEEPSEEK_API_KEY",
+        },
+      },
+      selector = {
+        exclude_auto_select = { "NvimTree" },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "stevearc/dressing.nvim", -- for input provider dressing
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+
+
+
 }

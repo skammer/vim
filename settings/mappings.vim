@@ -50,8 +50,10 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 " Map the arrow keys to be based on display lines, not physical lines
-map <Down> gj
-map <Up> gk
+" need to use nnoremap instead of map so that which-key doesn't complain
+" https://github.com/folke/which-key.nvim/issues/809#issuecomment-2380620036
+nnoremap <Down> gj
+nnoremap <Up> gk
 
 " Toggle hlsearch with <leader>hs
 nmap <leader>hs :set hlsearch! hlsearch?<CR>
